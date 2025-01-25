@@ -1,0 +1,164 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de manipulação da La Patisserie",
+        "description": "Essa API tem como objetivo a manipulação dos produtos, clientes e funcionários.",
+        "termsOfService": "https://localhost:3000/terms",
+        "contact": {
+            "email": "levi.pereira.junior@ccc.ufcg.edu.br"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/v1",
+            "description": "API de Teste"
+        },
+        {
+            "url": "http://www.lapatisserie.com/v1",
+            "description": "API de Teste"
+        }
+    ],
+    "paths": {
+        "/products": {
+            "post": {
+                "summary": "Cadastro de produto",
+                "description": "Essa rota irá ser responsável por cadastrar os produtos",
+                "tags": ["Products"],
+                "security": [{"bearerAuth": []}],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Product"
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "name": "Bolo de chocolate",
+                                        "description": "Bolo de chocolate médio",
+                                        "price": 200.00
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Não autorizado"
+                    },
+                    "400": {
+                        "description": "Produto já existe"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+        "/products/findByName": {
+            "get": {
+                "summary": "Buscar um produto pelo nome",
+                "description": "Busca um produto pelo nome",
+                "tags": ["Products"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Nome do produto para busca",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Não autorizado"
+                    },
+                    "400": {
+                        "description": "Produto já existe"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+        "/products/{id}": {
+            "get": {
+                "summary": "Buscar um produto pelo id",
+                "description": "Busca um produto pelo id",
+                "tags": ["Products"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do produto para busca",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Não autorizado"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Product": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "number"
+                    }
+                }
+            }
+        }, 
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}
