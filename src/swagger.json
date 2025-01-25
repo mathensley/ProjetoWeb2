@@ -64,6 +64,25 @@
                     }
                 }
 
+            },
+            "get": {
+                "summary": "Buscar todos os produtos",
+                "description": "Busca todos os produtos já cadastrados",
+                "tags": ["Products"],
+                "security": [{"bearerAuth": []}],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/products/findByName": {

@@ -6,7 +6,7 @@ const testeRouter = Router();
 
 const controllerTest = new ControllerTest();
 
-testeRouter.get("/api/teste", (request: Request, response: Response) => {
+testeRouter.get("/v1/products", (request: Request, response: Response) => {
     controllerTest.handle(request, response);
 });
 

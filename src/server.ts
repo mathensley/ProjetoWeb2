@@ -15,7 +15,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerJson))
 app.use(testeRouter);
 
 
-app.get("/", (request: Request, response: Response) => {
+app.get("/v1", (request: Request, response: Response) => {
     response.send("Hello World!");
 });
 
