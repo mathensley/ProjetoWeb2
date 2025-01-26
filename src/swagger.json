@@ -3,7 +3,7 @@
     "info": {
         "title": "API de manipulação da La Patisserie",
         "description": "Essa API tem como objetivo a manipulação dos produtos, clientes e funcionários.",
-        "termsOfService": "https://localhost:3000/terms",
+        "termsOfService": "http://localhost:3000/v1/terms",
         "contact": {
             "email": "levi.pereira.junior@ccc.ufcg.edu.br"
         },
@@ -85,42 +85,6 @@
                 }
             }
         },
-        "/products/findByName": {
-            "get": {
-                "summary": "Buscar um produto pelo nome",
-                "description": "Busca um produto pelo nome",
-                "tags": ["Products"],
-                "security": [{"bearerAuth": []}],
-                "parameters": [
-                    {
-                        "name": "name",
-                        "in": "query",
-                        "description": "Nome do produto para busca",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "401": {
-                        "description": "Não autorizado"
-                    },
-                    "400": {
-                        "description": "Produto já existe"
-                    },
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Product"
-                                }
-                            }
-                        }
-                    }
-                }
-
-            }
-        },
         "/products/{id}": {
             "get": {
                 "summary": "Buscar um produto pelo id",
@@ -153,6 +117,149 @@
                 }
 
             }
+        },
+
+        "/users": {
+            "post": {
+                "summary": "Cadastro de usuario",
+                "description": "Essa rota irá ser responsável por cadastrar os usuarios",
+                "tags": ["Users"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            },
+                            "examples": {
+                                "user": {
+                                    "value": {
+                                        "name": "Levi",
+                                        "cpf": "99999999999",
+                                        "password": "10101010",
+                                        "role": "ADMIN"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "User already exist"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            },
+
+            "get": {
+                "summary": "Buscar todos os usuários",
+                "description": "Busca todos os usuários já cadastrados",
+                "tags": ["Users"],
+                "security": [{"bearerAuth": []}],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/users/{id}": {
+            "get": {
+                "summary": "Buscar um usuário pelo id",
+                "description": "Busca um usuário pelo id",
+                "tags": ["Users"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do produto para busca",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/auth": {
+            "post": {
+                "summary": "Obtem um Token para o usuário",
+                "description": "Essa rota irá ser responsável dar o Token de acesso ao usuário",
+                "tags": ["Auth"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "examples": {
+                                "auth": {
+                                    "value": {
+                                        "cpf": "999999999",
+                                        "password": "10101010"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500": {
+                        "description": "User not exist"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Token"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
         }
     },
     "components": {
@@ -168,6 +275,28 @@
                     },
                     "price": {
                         "type": "number"
+                    }
+                }
+            },
+            "User": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "cpf": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "number"
+                    }
+                }
+            },
+            "Token": {
+                "type": "object",
+                "properties": {
+                    "token": {
+                        "type": "string"
                     }
                 }
             }
