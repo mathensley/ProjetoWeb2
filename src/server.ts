@@ -14,7 +14,6 @@ app.use(cors());
 app.use(express.json());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerJson))
 
-
 app.use(productsRouter);
 app.use(usersRouter);
 app.use(authRouter)

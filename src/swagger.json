@@ -16,7 +16,7 @@
         },
         {
             "url": "http://www.lapatisserie.com/v1",
-            "description": "API de Teste"
+            "description": "API em Produção"
         }
     ],
     "paths": {
