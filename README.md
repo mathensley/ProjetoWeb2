@@ -66,3 +66,10 @@ npx prisma migrate dev
 
 - E dê um nome qualquer (pode ser o nome do model que você criou ou alterou) para a migration.
 
+### Executar a aplicação
+
+- Execute o comando abaixo no terminal, na raiz do projeto
+
+```bash
+npm run dev```
+
