@@ -71,5 +71,5 @@ npx prisma migrate dev
 - Execute o comando abaixo no terminal, na raiz do projeto
 
 ```bash
-npm run dev```
-
+npm run dev
+```
