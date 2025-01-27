@@ -32,6 +32,7 @@ O site foi desenvolvido utilizando as melhores ferramentas de front-end e back-e
 - Suporte ao Cliente: Uma equipe de atendimento está disponível para ajudar com dúvidas e personalizações via chat ao vivo, telefone ou e-mail.
 Com o site da La Douceur de Campina, a experiência de saborear os produtos franceses da confeitaria se torna ainda mais prática e agradável, garantindo que cada evento e celebração seja marcado por sabores irresistíveis e memoráveis.
 
+
 ## Como executar o projeto
 
 Siga os passos abaixo para configurar e executar o projeto:
