@@ -31,3 +31,24 @@ O site foi desenvolvido utilizando as melhores ferramentas de front-end e back-e
 - Entrega Rápida: Os clientes podem agendar entregas para o dia e horário desejado, garantindo que o pedido chegue no momento perfeito.
 - Suporte ao Cliente: Uma equipe de atendimento está disponível para ajudar com dúvidas e personalizações via chat ao vivo, telefone ou e-mail.
 Com o site da La Douceur de Campina, a experiência de saborear os produtos franceses da confeitaria se torna ainda mais prática e agradável, garantindo que cada evento e celebração seja marcado por sabores irresistíveis e memoráveis.
+
+## Como executar 
+
+Este projeto utiliza [Prisma](https://www.prisma.io/) para gerenciamento do banco de dados e requer uma versão do Node.js superior a 16.
+
+## Pré-requisitos
+
+- **Node.js**: Certifique-se de ter uma versão superior a 16 instalada. Você pode gerenciar versões do Node.js usando o [nvm](https://github.com/nvm-sh/nvm).
+- **npm**: Instalado junto com o Node.js.
+
+---
+
+## Como executar o projeto
+
+Siga os passos abaixo para configurar e executar o projeto:
+
+### 1. Instalar as dependências
+Execute o comando abaixo no terminal, na raiz do projeto:
+
+```bash
+npm install

@@ -22,12 +22,15 @@ const errors_auth_code = {
 
 const INVALID_USER_BY_ID = "Error code 14";
 const INVALID_USER_ALREADY_EXISTS = "User already exists with this CPF";
+const INVALID_USER_ROLE_ADMIN = "User dont have admin role permission";
 
 const errors_user_code = {
     INVALID_USER_BY_ID,
     INVALID_USER_BY_CPF,
     INVALID_USER_ALREADY_EXISTS,
-    INVALID_UNRECOGNIZED_ERROR
+    INVALID_UNRECOGNIZED_ERROR,
+    INVALID_TOKEN,
+    INVALID_USER_ROLE_ADMIN
 }
 
 const INVALID_PRODUCT_ALREADY_EXIST = "Product already exists with this ID";

@@ -83,6 +83,28 @@
                         }
                     }
                 }
+            }, 
+
+            "delete": {
+                "summary": "Deleta todos os produtos",
+                "description": "Deleta todos os produtos através do Token",
+                "tags": ["Products"],
+                "security": [{"bearerAuth": []}],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/products/{id}": {
@@ -95,7 +117,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Id do produto para busca",
+                        "description": "Id do produto para a busca",
                         "required": true
                     }
                 ],
@@ -115,7 +137,36 @@
                         }
                     }
                 }
-
+            },
+            
+            "delete": {
+                "summary": "Deleta um produto",
+                "description": "Deleta um produto através do Token",
+                "tags": ["Products"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do produto para deletar",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
 
@@ -186,6 +237,28 @@
                         }
                     }
                 }
+            },
+
+            "delete": {
+                "summary": "Deleta todos os usuários",
+                "description": "Deleta todos os usuários através do Token",
+                "tags": ["Users"],
+                "security": [{"bearerAuth": []}],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
 
@@ -199,7 +272,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Id do produto para busca",
+                        "description": "Id do usuário para a busca",
                         "required": true
                     }
                 ],
@@ -219,7 +292,36 @@
                         }
                     }
                 }
+            },
 
+            "delete": {
+                "summary": "Deleta um usuário",
+                "description": "Deleta um usuário através do Token",
+                "tags": ["Users"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do usuário para deletar",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
 

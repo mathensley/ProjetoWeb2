@@ -20,4 +20,12 @@ productsRouter.post("/v1/products", authService.verifyToken,
     (request: Request, response: Response) => {productControler.register(request, response)}
 );
 
+productsRouter.delete("/v1/products", authService.verifyToken, 
+    (request: Request, response: Response) => {productControler.deleteAll(request, response)}
+);
+
+productsRouter.post("/v1/products/:id", authService.verifyToken, 
+    (request: Request, response: Response) => {productControler.delete(request, response)}
+);
+
 export default productsRouter;

@@ -22,4 +22,12 @@ usersRouter.post("/v1/users",
     (request: Request, response: Response) => {userControler.register(request, response)}
 );
 
+usersRouter.delete("/v1/users/:id",
+    (request: Request, response: Response) => {userControler.delete(request, response)}
+);
+
+usersRouter.delete("/v1/users",
+    (request: Request, response: Response) => {userControler.deleteAll(request, response)}
+);
+
 export default usersRouter;
