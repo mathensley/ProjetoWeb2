@@ -32,16 +32,6 @@ O site foi desenvolvido utilizando as melhores ferramentas de front-end e back-e
 - Suporte ao Cliente: Uma equipe de atendimento está disponível para ajudar com dúvidas e personalizações via chat ao vivo, telefone ou e-mail.
 Com o site da La Douceur de Campina, a experiência de saborear os produtos franceses da confeitaria se torna ainda mais prática e agradável, garantindo que cada evento e celebração seja marcado por sabores irresistíveis e memoráveis.
 
-## Como executar 
-
-Este projeto utiliza [Prisma](https://www.prisma.io/) para gerenciamento do banco de dados e requer uma versão do Node.js superior a 16.
-
-## Pré-requisitos
-
-- **Node.js**: Certifique-se de ter uma versão superior a 16 instalada. Você pode gerenciar versões do Node.js usando o [nvm](https://github.com/nvm-sh/nvm).
-- **npm**: Instalado junto com o Node.js.
-
----
 
 ## Como executar o projeto
 
@@ -52,3 +42,35 @@ Execute o comando abaixo no terminal, na raiz do projeto:
 
 ```bash
 npm install
+```
+
+### 2. Este projeto utiliza [Prisma](https://www.prisma.io/) para gerenciamento do banco de dados e requer uma versão do Node.js superior a 16.
+
+## Pré-requisitos do Prisma
+
+- **Node.js**: Certifique-se de ter uma versão superior a 16 instalada. Você pode gerenciar versões do Node.js usando o [nvm](https://github.com/nvm-sh/nvm).
+- **npm**: Instalado junto com o Node.js.
+
+- Execute o comando abaixo no terminal, na raiz do projeto
+
+```bash
+nvm use 16
+```
+
+### Criar as migrations
+
+- Execute o comando abaixo no terminal, na raiz do projeto
+
+```bash
+npx prisma migrate dev
+```
+
+- E dê um nome qualquer (pode ser o nome do model que você criou ou alterou) para a migration.
+
+### Executar a aplicação
+
+- Execute o comando abaixo no terminal, na raiz do projeto
+
+```bash
+npm run dev
+```
