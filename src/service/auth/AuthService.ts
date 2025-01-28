@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import { GetUserService } from "../user/GetUserService.js";
 import { BCrtyptUtils } from "./BCryptUtils.js";
 import { errors_auth_code } from "../../utils/ErrorsCode.js";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import jwt from "jsonwebtoken";
 
 const SECRET = process.env.SECRET
@@ -40,6 +41,8 @@ export class AuthService {
         } catch(error) {
             if (error instanceof Error) {
                 throw new Error(error.message);
+            } else {
+                throw new Error(errors_auth_code.INVALID_UNKNOWN);
             }
         }
     }
@@ -48,20 +51,36 @@ export class AuthService {
         const tokenHeader = request.headers["authorization"];
         const token = tokenHeader && tokenHeader.split(" ")[1];
 
-        if (!SECRET) {
-            throw new Error(errors_auth_code.INVALID_SECRET_KEY);
-        }
-        
-        if (!token) {
-            throw new Error(errors_auth_code.INVALID_TOKEN);
-        }
-
         try {
-            jwt.verify(token, SECRET);
-            next();
+            if (!SECRET) {
+                throw new Error(errors_auth_code.INVALID_SECRET_KEY);
+            }
+            
+            if (!token) {
+                throw new Error(errors_auth_code.INVALID_TOKEN);
+            }
 
-        } catch(error) {
-            throw new Error(errors_auth_code.INVALID_TOKEN_EXPIRED);
+            try {
+                jwt.verify(token, SECRET);
+                next();
+
+            } catch(error) {
+                throw new Error(errors_auth_code.INVALID_TOKEN_EXPIRED);
+            }
+        } catch(error: unknown) {
+            if (error instanceof PrismaClientKnownRequestError && error.code === "P") {
+                response.status(500).json({
+                    message: error.message
+                });
+            } else if (error instanceof Error) {
+                response.status(500).json({
+                    message: error.message
+                });
+            } else {
+                response.status(500).json({
+                    message: errors_auth_code.INVALID_UNKNOWN
+                });
+            }
         }
     } 
 

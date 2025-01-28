@@ -18,7 +18,6 @@ export class AuthController {
                     response.status(200).json({
                         token
                 });
-
             }
             
             throw new Error(errors_auth_code.INVALID_CPF_OR_PASSWORD);
@@ -27,7 +26,7 @@ export class AuthController {
             if (error instanceof Error) {
                 response.status(500).json({
                     message: error.message
-                })
+                });
             }
 
             response.status(500).json({

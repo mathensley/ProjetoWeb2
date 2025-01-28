@@ -7,6 +7,7 @@ const INVALID_USER_BY_CPF = "User not found by CPF";
 const INVALID_ROLE_UNAUTHORIZED = "Role unauthorized";
 const INVALID_CPF_OR_PASSWORD = "Invalid CPF or password";
 const INVALID_UNRECOGNIZED_ERROR = "Ocorreu um erro desconhecido. Contate o suporte!";
+const INVALID_UNKNOWN = "Unrecognized error. Contact the support!";
 
 const errors_auth_code = {
     INVALID_TOKEN,
@@ -17,7 +18,8 @@ const errors_auth_code = {
     INVALID_USER_BY_CPF,
     INVALID_ROLE_UNAUTHORIZED,
     INVALID_CPF_OR_PASSWORD,
-    INVALID_UNRECOGNIZED_ERROR
+    INVALID_UNRECOGNIZED_ERROR,
+    INVALID_UNKNOWN
 }
 
 const INVALID_USER_BY_ID = "Error code 14";

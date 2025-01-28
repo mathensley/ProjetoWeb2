@@ -11,7 +11,7 @@ export class DeleteUserService {
     async delete(request: Request, id: string) {
         try {
             const tokenHeader = request.headers["authorization"];
-            const token = tokenHeader && tokenHeader.split(" ")[1]
+            const token = tokenHeader && tokenHeader.split(" ")[1];
 
             if (!token) {
                 throw new Error(errors_user_code.INVALID_TOKEN);
@@ -31,7 +31,7 @@ export class DeleteUserService {
                 throw new Error(errors_user_code.INVALID_USER_BY_CPF);
             }
 
-            prismaClient.user.delete({where: {id}});
+            await prismaClient.user.delete({where: {id}});
             
         } catch(error: unknown) {
             if (error instanceof PrismaClientKnownRequestError && error.code == "P2002") {
@@ -44,7 +44,7 @@ export class DeleteUserService {
 
         try {
             const tokenHeader = request.headers["authorization"];
-            const token = tokenHeader && tokenHeader.split(" ")[1]
+            const token = tokenHeader && tokenHeader.split(" ")[1];
 
             if (!token) {
                 throw new Error(errors_user_code.INVALID_TOKEN);
@@ -61,7 +61,7 @@ export class DeleteUserService {
                 throw new Error(errors_user_code.INVALID_USER_ROLE_ADMIN);
             }
 
-            prismaClient.user.deleteMany();
+            await prismaClient.user.deleteMany();
             
         } catch(error: unknown) {
             if (error instanceof PrismaClientKnownRequestError && error.code == "P2002") {

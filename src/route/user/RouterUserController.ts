@@ -9,11 +9,13 @@ const userControler = new UserController();
 const authService = new AuthService();
 
 usersRouter.get("/v1/users/:id", 
-    authService.verifyToken, (request: Request, response: Response) => {userControler.findById(request, response)}
+    (request: Request, response: Response, next: NextFunction) => authService.verifyToken(request, response, next), 
+    authService.grantRole("ADMIN"), 
+    (request: Request, response: Response) => {userControler.findById(request, response)}
 );
 
 usersRouter.get("/v1/users", 
-    authService.verifyToken, 
+    (request: Request, response: Response, next: NextFunction) => authService.verifyToken(request, response, next), 
     authService.grantRole("ADMIN"), 
     (request: Request, response: Response) => {userControler.getAll(request, response)}
 );

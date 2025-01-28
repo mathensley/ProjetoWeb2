@@ -23,10 +23,14 @@ model User {
   cpf         String @unique
   password    String
   role        String
+
+    @@map("users")
 }
 
-model Funcionario {
+model DeliveryMan {
     id          String @id @default(uuid())
     name        String
-    placa       String
+    placa       String @unique
+
+    @@map("deliverymans")
 }

@@ -29,7 +29,6 @@ export class UserController {
                     info: error.message,
                     stackTrace: error.stack
                 });
-            
             }
         }
     }
@@ -43,7 +42,7 @@ export class UserController {
             
             return response.status(401).json({
                 message: "Unauthorized"
-            })
+            });
         }
     }
 
@@ -79,7 +78,7 @@ export class UserController {
             if (error instanceof Error) {
                 response.status(500).json({
                     message: error.message
-                })
+                });
             }
         }
     }
@@ -95,9 +94,8 @@ export class UserController {
             if (error instanceof Error) {
                 response.status(500).json({
                     message: error.message
-                })
+                });
             }
         }
     }
-
 }

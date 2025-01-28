@@ -29,7 +29,6 @@ export class ProductController {
                     info: error.message,
                     stackTrace: error.stack
                 });
-            
             }
         }
     }
