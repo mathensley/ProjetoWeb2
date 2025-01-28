@@ -35,14 +35,15 @@ export class UserController {
 
     async getAll(request: Request, response: Response) {
         try {
-            const responseProducts: User[] | null = await this.getUserService.getAll();
+            const responseProducts: User[] | undefined = await this.getUserService.getAll();
 
             return response.status(200).json(responseProducts);
         } catch(error) {
-            
-            return response.status(401).json({
-                message: "Unauthorized"
-            });
+            if (error instanceof Error) {
+                return response.status(401).json({
+                    message: error.message
+                });
+            }
         }
     }
 

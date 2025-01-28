@@ -34,8 +34,8 @@ export class DeleteUserService {
             await prismaClient.user.delete({where: {id}});
             
         } catch(error: unknown) {
-            if (error instanceof PrismaClientKnownRequestError && error.code == "P2002") {
-                throw new Error(errors_user_code.INVALID_USER_BY_CPF);
+            if (error instanceof PrismaClientKnownRequestError) {
+                throw new Error(error.code);
             } 
         }
     }
@@ -61,7 +61,7 @@ export class DeleteUserService {
                 throw new Error(errors_user_code.INVALID_USER_ROLE_ADMIN);
             }
 
-            await prismaClient.user.deleteMany();
+            await prismaClient.user.deleteMany({where: {role: "USER"}});
             
         } catch(error: unknown) {
             if (error instanceof PrismaClientKnownRequestError && error.code == "P2002") {

@@ -33,7 +33,7 @@ const errors_user_code = {
     INVALID_UNRECOGNIZED_ERROR,
     INVALID_TOKEN,
     INVALID_USER_ROLE_ADMIN
-}
+}  
 
 const INVALID_PRODUCT_ALREADY_EXIST = "Product already exists with this ID";
 

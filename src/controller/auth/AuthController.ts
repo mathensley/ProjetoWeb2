@@ -14,13 +14,13 @@ export class AuthController {
     
         try {
             if (cpf && password) {
-                    const token = await this.authService.login(cpf, password);
-                    response.status(200).json({
-                        token
+                const token = await this.authService.login(cpf, password);
+                response.status(200).json({
+                    token
                 });
+            } else {
+                throw new Error(errors_auth_code.INVALID_CPF_OR_PASSWORD);
             }
-            
-            throw new Error(errors_auth_code.INVALID_CPF_OR_PASSWORD);
 
         } catch(error) {
             if (error instanceof Error) {

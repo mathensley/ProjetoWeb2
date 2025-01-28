@@ -5,8 +5,14 @@ import { errors_auth_code, errors_user_code } from "../../utils/ErrorsCode.js";
 
 export class GetUserService {
 
-    public async getAll(): Promise<User[]> {
-        return await prismaClient.user.findMany();
+    public async getAll(): Promise<User[] | undefined> {
+        try {
+            return await prismaClient.user.findMany();
+        } catch(error: unknown) {
+            if (error instanceof PrismaClientKnownRequestError) {
+                throw new Error(error.code);
+            }
+        }
     }
 
     public async findById(id: string): Promise<User[] | null> {

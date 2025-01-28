@@ -100,7 +100,12 @@ export class AuthService {
                         if (allowedRoles.includes(user.role)) {
                             next();
                         }
+                    } else {
+                        response.status(500).json({
+                            message: errors_auth_code.INVALID_UNKNOWN
+                        });
                     }
+
                 } catch(error: unknown) {
                     if (error instanceof Error) {
                         response.status(500).json({
