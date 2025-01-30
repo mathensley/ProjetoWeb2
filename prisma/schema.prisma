@@ -59,7 +59,7 @@ model Product {
   image           String?
   category        Category
   price           Decimal
-  promotion       Boolean
+  promotion       Boolean         @default(false)
   created_at      DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
 

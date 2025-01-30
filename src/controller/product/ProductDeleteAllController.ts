@@ -10,10 +10,10 @@ export class ProductDeleteAllController {
 
     async handle(request: Request, response: Response) {
         try {
-            await this.productDeleteAllService.handle();
-
-            return response.status(200).json({
-                message: "Ok"
+            this.productDeleteAllService.handle().then(() => {
+                return response.status(200).json({
+                    message: "Ok"
+                });
             });
         } catch(error) {
             if (error instanceof Error) {

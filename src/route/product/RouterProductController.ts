@@ -28,11 +28,11 @@ productsRouter.get("/v1/products",
     (request: Request, response: Response) => {productGetAllController.handle(request, response)}
 );
 
-productsRouter.delete("/v1/products", authService.verifyToken, 
+productsRouter.delete("/v1/products", authService.verifyToken,
     (request: Request, response: Response) => {productDeleteUniqueController.handle(request, response)}
 );
 
-productsRouter.post("/v1/products/:id", authService.verifyToken, 
+productsRouter.delete("/v1/products/:id", authService.verifyToken, 
     (request: Request, response: Response) => {productDeleteAllController.handle(request, response)}
 );
 

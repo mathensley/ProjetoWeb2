@@ -9,13 +9,13 @@ export class ProductDeleteUniqueController {
     }
 
     async handle(request: Request, response: Response) {
-        const { id } = request.params
+        const { id } = request.params;
 
         try {
-            await this.productDeleteUniqueService.handle(String(id));
-
-            return response.status(200).json({
-                message: "Ok"
+            this.productDeleteUniqueService.handle(String(id)).then(() => {
+                return response.status(200).json({
+                    message: "Ok"
+                });
             });
         } catch(error) {
             if (error instanceof Error) {
