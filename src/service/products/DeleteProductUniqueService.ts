@@ -1,16 +1,11 @@
-import { Request, Response } from "express";
 import { prismaClient } from "../../database/PrismaClient.js";
-import { errors_auth_code, errors_product_code } from "../../utils/ErrorsCode.js";
+import { errors_product_code } from "../../utils/ErrorsCode.js";
 import { Product } from "@prisma/client";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
-export class DeleteProductService {
+export class ProductDeleteUniqueService {
 
-    async deleteAll() {
-        prismaClient.user.deleteMany();
-    }
-
-    async delete(id: string) {
+    async handle(id: string) {
         try {
 
             const product: Product | null = await prismaClient.product.findUnique({where: {id}});

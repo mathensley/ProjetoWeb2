@@ -37,6 +37,8 @@
                                     "value": {
                                         "name": "Bolo de chocolate",
                                         "description": "Bolo de chocolate médio",
+                                        "image": "image",
+                                        "category": "BOLO",
                                         "price": 200.00
                                     }
                                 }
@@ -46,17 +48,17 @@
                 },
                 "responses": {
                     "401": {
-                        "description": "Não autorizado"
+                        "description": "Unauthorized"
                     },
                     "400": {
-                        "description": "Produto já existe"
+                        "description": "Product already exists"
                     },
                     "200": {
                         "description": "OK",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
+                                    "type": "object",
                                     "$ref": "#/components/schemas/Product"
                                 }
                             }
@@ -76,8 +78,8 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Product"
+                                    "type": "array",
+                                    "$ref": "#/components/schemas/ProductResponse"
                                 }
                             }
                         }
@@ -122,16 +124,13 @@
                     }
                 ],
                 "responses": {
-                    "401": {
-                        "description": "Não autorizado"
-                    },
                     "200": {
                         "description": "OK",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Product"
+                                    "type": "array",
+                                    "$ref": "#/components/schemas/ProductResponse"
                                 }
                             }
                         }
@@ -172,8 +171,8 @@
 
         "/users": {
             "post": {
-                "summary": "Cadastro de usuario",
-                "description": "Essa rota irá ser responsável por cadastrar os usuarios",
+                "summary": "Cadastro de usuário",
+                "description": "Essa rota irá ser responsável por cadastrar os usuários",
                 "tags": ["Users"],
                 "requestBody": {
                     "content": {
@@ -327,7 +326,7 @@
 
         "/auth": {
             "post": {
-                "summary": "Obtem um Token para o usuário",
+                "summary": "Obtém um Token para o usuário",
                 "description": "Essa rota irá ser responsável dar o Token de acesso ao usuário",
                 "tags": ["Auth"],
                 "requestBody": {
@@ -375,8 +374,48 @@
                     "description": {
                         "type": "string"
                     },
+                    "image": {
+                        "type": "string"
+                    },
+                    "category": {
+                        "type": "string",
+                        "enum": ["BOLO", "DOCE", "BEBIDA"]
+                    },
                     "price": {
                         "type": "number"
+                    }
+                }
+            },
+            "ProductResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "category": {
+                        "type": "string",
+                        "enum": ["BOLO", "DOCE", "BEBIDA"]
+                    },
+                    "price": {
+                        "type": "number"
+                    },
+                    "promotion": {
+                        "type": "boolean"
+                    },
+                    "createdAt": {
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "type": "string"
                     }
                 }
             },
