@@ -3,12 +3,8 @@ import { prismaClient } from "../../database/PrismaClient.js";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { errors_product_code } from "../../utils/ErrorsCode.js";
 
-export class GetProductService {
-    public async getAll(): Promise<Product[]> {
-        return await prismaClient.product.findMany();
-    }
-
-    public async get(id: string): Promise<Product[] | null> {
+export class ProductGetUniqueService {
+    public async handle(id: string): Promise<Product[] | null> {
         try {
             const response = await prismaClient.product.findUnique({where: {id}});
 

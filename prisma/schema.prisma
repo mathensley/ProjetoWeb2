@@ -7,30 +7,89 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Product {
-  id          String    @id @default(uuid())
-  name        String    @unique
-  description String
-  price       Decimal
-  created_at  DateTime  @default(now())
+enum Category {
+  DOCE
+  BOLO
+  BEBIDA
+}
 
-  @@map("products")
+model Admin {
+  id              String          @id @default(uuid())
+  name            String
+  password        String
+
+  establishment   Establishment?
+}
+
+model Client {
+  id              String          @id @default(uuid())
+  name            String
+  username        String
+  password        String
+  cpf             String          @unique
+  email           String
+  phone           String
+  address         String
+  city            String
+  state           String
+  cep             String
+  created_at      DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  establishment   Establishment?  @relation(fields: [establishmentId], references: [id])
+  establishmentId String?
+}
+
+model DeliveryRider {
+  id              String          @id @default(uuid())
+  name            String
+  password        String
+  license_plate   String          @unique
+  created_at      DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  establishment   Establishment?  @relation(fields: [establishmentId], references: [id])
+  establishmentId String?
+}
+
+model Product {
+  id              String          @id @default(uuid())
+  name            String          @unique
+  description     String?
+  image           String?
+  category        Category
+  price           Decimal
+  promotion       Boolean
+  created_at      DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  establishment   Establishment?  @relation(fields: [establishmentId], references: [id])
+  establishmentId String?
+}
+
+model Establishment {
+  id              String          @id @default(uuid())
+  name            String
+  address         String
+  city            String
+  state           String
+  cep             String
+  email           String
+  phone           String
+
+  admin           Admin           @relation(fields: [adminId], references: [id])
+  adminId         String          @unique
+  clients         Client[]
+  deliveryRiders  DeliveryRider[]
+  products        Product[]
 }
 
 model User {
-  id          String    @id @default(uuid())
-  name        String
-  cpf         String    @unique
-  password    String
-  role        String
+  id            String    @id @default(uuid())
+  name          String
+  cpf           String    @unique
+  password      String
+  role          String
 
   @@map("users")
-}
-
-model DeliveryMan {
-    id        String    @id @default(uuid())
-    name      String
-    placa     String    @unique
-
-    @@map("deliverymans")
 }
