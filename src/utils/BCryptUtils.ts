@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-export class BCrtyptUtils {
+export class BcryptUtil {
     static async hashPassword(password: string): Promise<string> {
         const saltRounds: number = 10;
         const hashPassword = await bcrypt.hash(password, saltRounds);

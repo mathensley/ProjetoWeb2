@@ -1,7 +1,7 @@
 import { Request, response } from "express";
 import { errors_user_code } from "../../utils/ErrorsCode.js";
 import { prismaClient } from "../../database/PrismaClient.js";
-import { BCrtyptUtils } from "../auth/BCryptUtils.js";
+import { BcryptUtil } from "../../utils/BCryptUtils.js";
 import {  } from "@prisma/client/runtime/library";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/react-native.js";
 import { User } from "@prisma/client";
@@ -17,7 +17,7 @@ export class DeleteUserService {
                 throw new Error(errors_user_code.INVALID_TOKEN);
             }
 
-            const cpf: string = await BCrtyptUtils.getCpfByToken(token);
+            const cpf: string = await BcryptUtil.getCpfByToken(token);
             const user: User | null = await prismaClient.user.findUnique({where: {cpf}});
 
             if (!user) {
@@ -50,7 +50,7 @@ export class DeleteUserService {
                 throw new Error(errors_user_code.INVALID_TOKEN);
             }
 
-            const cpf: string = await BCrtyptUtils.getCpfByToken(token);
+            const cpf: string = await BcryptUtil.getCpfByToken(token);
             const user: User | null = await prismaClient.user.findUnique({where: {cpf}});
 
             if (!user) {

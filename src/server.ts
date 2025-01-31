@@ -2,6 +2,8 @@ import express, {Express, Request, Response } from "express";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import swaggerJson from "./swagger.json" assert { type: "json"};
+
+import clientRoutes from "./route/client/clientRoutes.js"
 import productsRouter from "./route/product/RouterProductController.js";
 import usersRouter from "./route/user/RouterUserController.js";
 import authRouter from "./route/auth/RouterAuthController.js";
@@ -14,6 +16,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerJson))
 
+app.use(clientRoutes);
 app.use(productsRouter);
 app.use(usersRouter);
 app.use(authRouter)

@@ -11,7 +11,7 @@
     },
     "servers": [
         {
-            "url": "http://localhost:3000/v1",
+            "url": "http://localhost:3000/api",
             "description": "API de Teste"
         },
         {
@@ -20,6 +20,103 @@
         }
     ],
     "paths": {
+        "/clients": {
+            "post": {
+                "summary": "Cadastro de cliente",
+                "description": "Essa rota será responsável por cadastrar os clientes",
+                "tags": ["Clients"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Client"
+                            },
+                            "examples": {
+                                "client": {
+                                    "value": {
+                                        "name": "João Silva",
+                                        "username": "joaosilva",
+                                        "password": "senha123",
+                                        "cpf": "123.456.789-00",
+                                        "email": "joao@email.com",
+                                        "phone": "999999999",
+                                        "address": "Rua das Flores, 123",
+                                        "city": "São Paulo",
+                                        "state": "SP",
+                                        "cep": "01010-000"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Cliente já existe"
+                    },
+                    "201": {
+                        "description": "Cliente cadastrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Client"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "Buscar todos os clientes",
+                "description": "Busca todos os clientes cadastrados",
+                "tags": ["Clients"],
+                "responses": {
+                    "200": {
+                        "description": "Lista de clientes",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                         "$ref": "#/components/schemas/Client"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } 
+        },
+        "/clients/{id}": {
+            "delete": {
+                "summary": "Deleta um cliente",
+                "description": "Deleta um cliente pelo seu id",
+                "tags": ["Clients"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description":"Id do cliente para deletar",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/products": {
             "post": {
                 "summary": "Cadastro de produto",
@@ -366,6 +463,25 @@
     },
     "components": {
         "schemas": {
+            "Client": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "phone": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    }
+                },
+                "required": ["name", "email", "phone", "address"]
+            },
             "Product": {
                 "type": "object",
                 "properties": {

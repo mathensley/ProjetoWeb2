@@ -1,7 +1,7 @@
 import { User } from "@prisma/client";
 import { NextFunction, Request, Response } from "express";
 import { GetUserService } from "../user/GetUserService.js";
-import { BCrtyptUtils } from "./BCryptUtils.js";
+import { BcryptUtil } from "../../utils/BCryptUtils.js";
 import { errors_auth_code } from "../../utils/ErrorsCode.js";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import jwt from "jsonwebtoken";
@@ -28,7 +28,7 @@ export class AuthService {
             }
 
             const user: User = userRecovery[0];
-            const validationPassword = BCrtyptUtils.comparePassword(password, user.password);
+            const validationPassword = BcryptUtil.comparePassword(password, user.password);
 
             if (!validationPassword) {
                 throw Error(errors_auth_code.INVALID_PASSWORD);
@@ -91,7 +91,7 @@ export class AuthService {
 
             if (token) {
                 try {
-                    const cpf = await BCrtyptUtils.getCpfByToken(token);
+                    const cpf = await BcryptUtil.getCpfByToken(token);
                     const userResponse = await this.getUserService.findByCpf(cpf);
 
                     if (userResponse) {
