@@ -33,6 +33,10 @@ O site foi desenvolvido utilizando as melhores ferramentas de front-end e back-e
 Com o site da La Douceur de Campina, a experiência de saborear os produtos franceses da confeitaria se torna ainda mais prática e agradável, garantindo que cada evento e celebração seja marcado por sabores irresistíveis e memoráveis.
 
 
+## Diagrama 
+
+![Modelo Banco de Dados do Prisma](./src/utils/imgs/ModeloDBPrisma.png)
+
 ## Como executar o projeto
 
 Siga os passos abaixo para configurar e executar o projeto:
