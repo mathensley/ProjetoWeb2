@@ -43,7 +43,7 @@ export class CreateClientService {
             return client;
         } catch (error) {
             if (error instanceof PrismaClientKnownRequestError && error.code === "P2002") {
-                throw new Error(errors_user_code.INVALID_USER_ALREADY_EXISTS);
+                throw new Error(errors_user_code.INVALID_USER_BY_ID);
             }
             throw new Error(errors_user_code.INVALID_UNRECOGNIZED_ERROR)
         }

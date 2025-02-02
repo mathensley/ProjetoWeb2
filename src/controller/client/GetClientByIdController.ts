@@ -1,12 +1,15 @@
 import { Request, Response } from "express";
-import { GetClientsService } from "../../service/client/GetClientsService.js";
+import { GetClientByIdService } from "../../service/client/GetClientByIdService.js";
 
-export class GetClientsController {
+export class GetClientByIdController {
     async handle(request: Request, response: Response) {
         try {
-            const getClientsService = new GetClientsService();
-            const clients = await getClientsService.getAll();
-            return response.status(200).json(clients);
+            const { id } = request.params;
+
+            const getClientByIdService = new GetClientByIdService();
+            const client = await getClientByIdService.get(String(id));
+            
+            return response.status(200).json(client);
         } catch (error) {
             if (error instanceof Error) {
                 return response.status(500).json({

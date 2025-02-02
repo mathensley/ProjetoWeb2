@@ -54,12 +54,29 @@ npm install
 
 - **Node.js**: Certifique-se de ter uma versão superior a 16 instalada. Você pode gerenciar versões do Node.js usando o [nvm](https://github.com/nvm-sh/nvm).
 - **npm**: Instalado junto com o Node.js.
+- **PostgreSQL**
 
 - Execute o comando abaixo no terminal, na raiz do projeto
 
 ```bash
 nvm use 16
 ```
+
+### PostgreSQL
+
+- Execute o comando abaixo no terminal
+
+```
+psql -U postgres -h localhost
+```
+
+- Após isso, execute o próximo comando para criar o usuário
+
+```
+CREATE USER admin WITH PASSWORD 'admin';
+```
+
+Lembre-se de garantir que o usuário tenha permissão para criar banco de dados.
 
 ### Criar as migrations
 

@@ -66,6 +66,7 @@
                     }
                 }
             },
+
             "get": {
                 "summary": "Buscar todos os clientes",
                 "description": "Busca todos os clientes cadastrados",
@@ -85,9 +86,97 @@
                         }
                     }
                 }
-            } 
+            }
         },
+
         "/clients/{id}": {
+            "get": {
+                "summary": "Buscar um cliente pelo id",
+                "description": "Busca um cliente pelo seu id",
+                "tags": ["Clients"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do cliente para a busca",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "$ref": "#/components/schemas/Client"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            "put": {
+                "summary": "Atualizar um cliente",
+                "description": "Atualiza os dados de um cliente pelo seu ID",
+                "tags": ["Clients"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do cliente a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ClientUpdate"
+                            },
+                            "examples": {
+                                "updateClient": {
+                                    "value": {
+                                        "name": "Maria Souza",
+                                        "username": "mariasouza",
+                                        "password": "novaSenha123",
+                                        "email": "maria@email.com",
+                                        "phone": "888888888",
+                                        "address": "Av. Paulista, 500",
+                                        "city": "São Paulo",
+                                        "state": "SP",
+                                        "cep": "01310-000"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Cliente atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Client"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Dados inválidos"
+                    },
+                    "500": {
+                        "description": "Cliente não encontrado"
+                    }
+                }
+            },
+
             "delete": {
                 "summary": "Deleta um cliente",
                 "description": "Deleta um cliente pelo seu id",
@@ -117,6 +206,100 @@
                 }
             }
         },
+
+        "/delivery_riders": {
+            "post": {
+                "summary": "Cadastro de Entregador",
+                "description": "Essa rota será responsável por cadastrar os entregadores",
+                "tags": ["DeliveryRiders"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeliveryRider"
+                            },
+                            "examples": {
+                                "client": {
+                                    "value": {
+                                        "name": "José Alvez",
+                                        "password": "deumasete",
+                                        "license_plate": "244GRAU"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Entregador já existe"
+                    },
+                    "201": {
+                        "description": "Entregador cadastrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeliveryRider"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            "get": {
+                "summary": "Buscar todos os entregadores",
+                "description": "Busca todos os entregadores cadastrados",
+                "tags": ["DeliveryRiders"],
+                "responses": {
+                    "200": {
+                        "description": "Lista de entregadores",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                         "$ref": "#/components/schemas/DeliveryRider"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/delivery_riders/{id}": {
+            "delete": {
+                "summary": "Deleta um entregador",
+                "description": "Deleta um entregador pelo seu id",
+                "tags": ["DeliveryRiders"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description":"Id do entregador para deletar",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
         "/products": {
             "post": {
                 "summary": "Cadastro de produto",
@@ -634,6 +817,23 @@
                 },
                 "required": ["name", "email", "phone", "address"]
             },
+
+            "DeliveryRider": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "license_plate": {
+                        "type": "string"
+                    }
+                },
+                "required": ["name", "password", "license_plate"]
+            },
+
             "Product": {
                 "type": "object",
                 "properties": {
@@ -655,6 +855,7 @@
                     }
                 }
             },
+
             "ProductResponse": {
                 "type": "object",
                 "properties": {

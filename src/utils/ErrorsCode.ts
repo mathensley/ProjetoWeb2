@@ -22,7 +22,7 @@ const errors_auth_code = {
     INVALID_UNKNOWN
 }
 
-const INVALID_USER_BY_ID = "Error code 14";
+const INVALID_USER_BY_ID = "User already exists with this ID";
 const INVALID_USER_ALREADY_EXISTS = "User already exists with this CPF";
 const INVALID_USER_ROLE_ADMIN = "User dont have admin role permission";
 

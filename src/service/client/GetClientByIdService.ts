@@ -1,20 +1,26 @@
 import { PrismaClient } from '@prisma/client';
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
-export class GetClientsService {
+export class GetClientByIdService {
     private prismaClient: PrismaClient;
 
     constructor(prismaClient?: PrismaClient) {
         this.prismaClient = prismaClient || new PrismaClient();
     }
 
-    async getAll() {
+    async get(id: string) {
         try {
-            return await this.prismaClient.client.findMany();
+            const client = await this.prismaClient.client.findUnique({where: {id}});
+            if (!client) {
+                throw new Error("Client not found.");
+            }
+            return client;
         } catch (error) {
             if (error instanceof PrismaClientKnownRequestError) {
                 throw new Error(error.code);
             }
+            throw error;
         }
+
     }
 }

@@ -15,7 +15,6 @@ export class EstablishmentGetUniqueController {
         try {
             const responseProducts: Establishment[] | null = await this.establishmentGetUniqueService.handle(String(id));
             return response.status(200).json(responseProducts);
-
         } catch(error) {
             if (error instanceof Error) {
                 return response.status(500).json({
