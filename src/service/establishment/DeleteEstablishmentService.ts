@@ -2,9 +2,9 @@ import { prismaClient } from "../../database/PrismaClient.js";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { errors_product_code } from "../../utils/ErrorsCode.js";
 
-export class EstablishmentDeleteUniqueService {
+export class DeleteEstablishmentService {
 
-    async handle(id: string) {
+    async delete(id: string) {
         try {
             await prismaClient.establishment.deleteMany({where: {id}});       
         } catch(error: unknown) {

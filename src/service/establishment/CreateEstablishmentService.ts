@@ -3,18 +3,12 @@ import { prismaClient } from "../../database/PrismaClient.js";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { errors_product_code } from "../../utils/ErrorsCode.js";
 
-export class EstablishmentGetUniqueService {
-    public async handle(id: string): Promise<Establishment[] | null> {
+export class CreateEstablishmentService {
+    public async create(data: Establishment): Promise<Establishment> {
+
         try {
-            const response = await prismaClient.establishment.findUnique({where: {id}});
-    
-            if (response) {
-                return [response];
-            }
-    
-            return null;
-    
-        } catch (error: unknown) {
+            return await prismaClient.establishment.create({data});
+        } catch (error) {
             if (error instanceof PrismaClientKnownRequestError && error.code === "P2002") {
                 throw new Error(errors_product_code.INVALID_PRODUCT_ALREADY_EXIST);
             }

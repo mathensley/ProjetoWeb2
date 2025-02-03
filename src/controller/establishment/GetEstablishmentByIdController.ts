@@ -1,21 +1,20 @@
 import { Request, Response } from "express";
-import { Product } from "@prisma/client";
-import { ProductGetUniqueService } from "../../service/products/ProductGetUniqueService.js";
+import { Establishment, Product } from "@prisma/client";
+import { GetEstablishmentByIdService } from "../../service/establishment/GetEstablishmentByIdService.js";
 
-export class ProductGetUniqueController {
-    private productGetUniqueService: ProductGetUniqueService;
+export class GetEstablishmentByIdController {
+    private getEstablishmentByIdService: GetEstablishmentByIdService;
 
     constructor() {
-        this.productGetUniqueService = new ProductGetUniqueService();
+        this.getEstablishmentByIdService = new GetEstablishmentByIdService();
     }
 
     async handle(request: Request, response: Response) {
         const { id } = request.params
 
         try {
-            const responseProducts: Product[] | null = await this.productGetUniqueService.handle(String(id));
+            const responseProducts: Establishment[] | null = await this.getEstablishmentByIdService.get(String(id));
             return response.status(200).json(responseProducts);
-
         } catch(error) {
             if (error instanceof Error) {
                 return response.status(500).json({

@@ -1,19 +1,19 @@
 import { Request, Response } from "express";
 import { Product } from "@prisma/client";
-import { ProductPostService } from "../../service/products/ProductPostService.js";
+import { CreateProductService } from "../../service/products/CreateProductService.js";
 
-export class ProductPostController {
-    private productPostService: ProductPostService;  
+export class CreateProductController {
+    private createProductService: CreateProductService;  
 
     constructor() {
-        this.productPostService = new ProductPostService();
+        this.createProductService = new CreateProductService();
     }
 
     async handle(request: Request, response: Response) {
         const data: Product = request.body;
 
         try {
-            const productResponse: Product = await this.productPostService.handle(data);
+            const productResponse: Product = await this.createProductService.create(data);
             return response.status(200).json(productResponse);
 
         } catch(error) {

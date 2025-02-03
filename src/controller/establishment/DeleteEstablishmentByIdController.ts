@@ -1,16 +1,18 @@
 import { Request, Response } from "express";
-import { ProductDeleteAllService } from "../../service/products/DeleteProductAllService.js";
+import { DeleteEstablishmentService } from "../../service/establishment/DeleteEstablishmentService.js";
 
-export class ProductDeleteAllController {
-    private productDeleteAllService: ProductDeleteAllService; 
+export class DeleteEstablishmentByIdController {
+    private deleteEstablishmentService: DeleteEstablishmentService; 
 
     constructor() {
-        this.productDeleteAllService = new ProductDeleteAllService();
+        this.deleteEstablishmentService = new DeleteEstablishmentService();
     }
 
     async handle(request: Request, response: Response) {
+        const { id } = request.params;
+
         try {
-            this.productDeleteAllService.handle().then(() => {
+            this.deleteEstablishmentService.delete(String(id)).then(() => {
                 return response.status(200).json({
                     message: "Ok"
                 });

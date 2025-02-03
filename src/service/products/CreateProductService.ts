@@ -3,11 +3,11 @@ import { prismaClient } from "../../database/PrismaClient.js";
 import { errors_product_code } from "../../utils/ErrorsCode.js";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
-export class ProductPostService {
-    public async handle(data: Product): Promise<Product> {
+export class CreateProductService {
+    public async create(data: Product): Promise<Product> {
 
         try {
-            return prismaClient.product.create({data});
+            return await prismaClient.product.create({data});
         } catch (error) {
             if (error instanceof PrismaClientKnownRequestError && error.code === "P2002") {
                 throw new Error(errors_product_code.INVALID_PRODUCT_ALREADY_EXIST);

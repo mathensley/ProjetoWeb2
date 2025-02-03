@@ -26,6 +26,10 @@ const INVALID_USER_BY_ID = "User already exists with this ID";
 const INVALID_USER_ALREADY_EXISTS = "User already exists with this CPF";
 const INVALID_USER_ROLE_ADMIN = "User dont have admin role permission";
 
+const INVALID_PRODUCT_BY_ID = "Product not found by ID";
+
+const INVALID_ESTABLISHMENT_BY_ID = "Establishment not found by ID";
+
 const errors_user_code = {
     INVALID_USER_BY_ID,
     INVALID_USER_BY_CPF,
@@ -39,7 +43,13 @@ const INVALID_PRODUCT_ALREADY_EXIST = "Product already exists with this ID";
 
 const errors_product_code = {
     INVALID_UNRECOGNIZED_ERROR,
-    INVALID_PRODUCT_ALREADY_EXIST
+    INVALID_PRODUCT_ALREADY_EXIST,
+    INVALID_PRODUCT_BY_ID
 }
 
-export { errors_auth_code, errors_user_code, errors_product_code };
+const errors_establishment_code = {
+    INVALID_UNRECOGNIZED_ERROR,
+    INVALID_ESTABLISHMENT_BY_ID
+}
+
+export { errors_auth_code, errors_user_code, errors_product_code, errors_establishment_code };

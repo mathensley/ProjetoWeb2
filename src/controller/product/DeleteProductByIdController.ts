@@ -1,18 +1,18 @@
 import { Request, Response } from "express";
-import { EstablishmentDeleteUniqueService } from "../../service/establishment/EstablishmentDeleteUniqueService.js";
+import { DeleteProductService } from "../../service/products/DeleteProductService.js";
 
-export class EstablishmentDeleteUniqueController {
-    private establishmentDeleteUniqueService: EstablishmentDeleteUniqueService; 
+export class DeleteProducByIdController {
+    private deleteProductService: DeleteProductService; 
 
     constructor() {
-        this.establishmentDeleteUniqueService = new EstablishmentDeleteUniqueService();
+        this.deleteProductService = new DeleteProductService();
     }
 
     async handle(request: Request, response: Response) {
         const { id } = request.params;
 
         try {
-            this.establishmentDeleteUniqueService.handle(String(id)).then(() => {
+            this.deleteProductService.delete(String(id)).then(() => {
                 return response.status(200).json({
                     message: "Ok"
                 });

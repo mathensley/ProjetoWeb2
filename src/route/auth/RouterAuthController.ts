@@ -6,7 +6,7 @@ const authRouter = Router();
 
 const authController = new AuthController();
 
-authRouter.post("/v1/auth", 
+authRouter.post("/api/auth", 
     (request: Request, response: Response) => {authController.login(request, response)}
 );
 

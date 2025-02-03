@@ -1,19 +1,19 @@
 import { Request, Response } from "express";
 import { Establishment } from "@prisma/client";
-import { EstablishmentPostService } from "../../service/establishment/EstablishmentPostService.js";
+import { CreateEstablishmentService } from "../../service/establishment/CreateEstablishmentService.js";
 
-export class EstablishmentPostController {
-    private establishmentPostService: EstablishmentPostService; 
+export class CreateEstablishmentController {
+    private createEstablishmentService: CreateEstablishmentService; 
 
     constructor() {
-        this.establishmentPostService = new EstablishmentPostService();
+        this.createEstablishmentService = new CreateEstablishmentService();
     }
 
     async handle(request: Request, response: Response) {
         const data: Establishment = request.body;
 
         try {
-            const productResponse: Establishment = await this.establishmentPostService.handle(data);
+            const productResponse: Establishment = await this.createEstablishmentService.create(data);
             return response.status(200).json(productResponse);
 
         } catch(error) {

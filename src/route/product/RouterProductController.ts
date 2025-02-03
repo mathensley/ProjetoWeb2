@@ -1,42 +1,43 @@
 import { Router } from "express";
 import { Request, Response } from "express";
 import { AuthService } from "../../service/auth/AuthService.js";
-import { ProductGetUniqueController } from "../../controller/product/ProductGetUniqueController.js";
-import { ProductGetAllController } from "../../controller/product/ProductGetAllController.js";
-import { ProductDeleteUniqueController } from "../../controller/product/ProductDeleteUniqueController.js";
-import { ProductDeleteAllController } from "../../controller/product/ProductDeleteAllController.js";
-import { ProductPostController } from "../../controller/product/ProductPostController.js";
+import { GetProductByIdController } from "../../controller/product/GetProductByIdController.js";
+import { GetProductController } from "../../controller/product/GetProductController.js";
+import { DeleteProducByIdController } from "../../controller/product/DeleteProductByIdController.js";
+import { CreateProductController } from "../../controller/product/CreateProductController.js";
+import { UpdateProductController } from "../../controller/product/UpdateProductController.js";
 
 const productsRouter = Router();
 
 const authService = new AuthService();
-const productPostController = new ProductPostController();
-const productGetUniqueController = new ProductGetUniqueController();
-const productGetAllController = new ProductGetAllController();
-const productDeleteUniqueController = new ProductDeleteUniqueController();
-const productDeleteAllController = new ProductDeleteAllController();
+
+const createProductController = new CreateProductController();
+const getProductByIdController = new GetProductByIdController();
+const getProductController = new GetProductController();
+const deleteProducByIdController = new DeleteProducByIdController();
+const updateProductService = new UpdateProductController();
 
 productsRouter.post("/v1/products", 
     authService.verifyToken, 
-    (request: Request, response: Response) => {productPostController.handle(request, response)}
+    (request: Request, response: Response) => {createProductController.handle(request, response)}
 );
 
 productsRouter.get("/v1/products/:id", 
-    (request: Request, response: Response) => {productGetUniqueController.handle(request, response)}
+    (request: Request, response: Response) => {getProductByIdController.handle(request, response)}
 );
 
 productsRouter.get("/v1/products", 
-    (request: Request, response: Response) => {productGetAllController.handle(request, response)}
+    (request: Request, response: Response) => {getProductController.handle(request, response)}
 );
 
-productsRouter.delete("/v1/products", 
-    authService.verifyToken,
-    (request: Request, response: Response) => {productDeleteUniqueController.handle(request, response)}
+productsRouter.put("/v1/products/:id", 
+    authService.verifyToken, 
+    (request: Request, response: Response) => {updateProductService.handle(request, response)}
 );
 
 productsRouter.delete("/v1/products/:id", 
     authService.verifyToken, 
-    (request: Request, response: Response) => {productDeleteAllController.handle(request, response)}
+    (request: Request, response: Response) => {deleteProducByIdController.handle(request, response)}
 );
 
 export default productsRouter;
