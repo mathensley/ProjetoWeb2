@@ -137,7 +137,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/ClientUpdate"
+                                "$ref": "#/components/schemas/Client"
                             },
                             "examples": {
                                 "updateClient": {
@@ -270,6 +270,87 @@
         },
 
         "/delivery_riders/{id}": {
+            "get": {
+                "summary": "Buscar um entregador pelo id",
+                "description": "Busca um entregador pelo seu id",
+                "tags": ["DeliveryRiders"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do entregador para a busca",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "$ref": "#/components/schemas/DeliveryRider"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            "put": {
+                "summary": "Atualizar um entregador",
+                "description": "Atualiza os dados de um entregador pelo seu ID",
+                "tags": ["DeliveryRiders"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do entregador a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeliveryRider"
+                            },
+                            "examples": {
+                                "updateDeliveryRider": {
+                                    "value": {
+                                        "name": "Maria Souza",
+                                        "password": "novaSenha123",
+                                        "license_plate": "MILGRAU"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Entregador atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeliveryRider"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Dados inválidos"
+                    },
+                    "500": {
+                        "description": "Entregador não encontrado"
+                    }
+                }
+            },
+
             "delete": {
                 "summary": "Deleta um entregador",
                 "description": "Deleta um entregador pelo seu id",
