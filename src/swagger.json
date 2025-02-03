@@ -639,24 +639,22 @@
             }
         },
 
-        "/users": {
+        "/admins": {
             "post": {
-                "summary": "Cadastro de usuário",
-                "description": "Essa rota irá ser responsável por cadastrar os usuários",
-                "tags": ["Users"],
+                "summary": "Cadastro de Admin",
+                "description": "Essa rota será responsável por cadastrar os admins",
+                "tags": ["Admins"],
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/User"
+                                "$ref": "#/components/schemas/Admin"
                             },
                             "examples": {
-                                "user": {
+                                "admin": {
                                     "value": {
-                                        "name": "Levi",
-                                        "cpf": "99999999999",
-                                        "password": "10101010",
-                                        "role": "ADMIN"
+                                        "name": "Carlos",
+                                        "password": "senha123"
                                     }
                                 }
                             }
@@ -664,128 +662,15 @@
                     }
                 },
                 "responses": {
-                    "401": {
-                        "description": "Unauthorized"
-                    },
                     "400": {
-                        "description": "User already exist"
+                        "description": "Admin já existe"
                     },
-                    "200": {
-                        "description": "OK",
+                    "201": {
+                        "description": "Admin cadastrado com sucesso",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "$ref": "#/components/schemas/User"
-                                }
-                            }
-                        }
-                    }
-                }
-
-            },
-
-            "get": {
-                "summary": "Buscar todos os usuários",
-                "description": "Busca todos os usuários já cadastrados",
-                "tags": ["Users"],
-                "security": [{"bearerAuth": []}],
-                "responses": {
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/User"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-
-            "delete": {
-                "summary": "Deleta todos os usuários",
-                "description": "Deleta todos os usuários através do Token",
-                "tags": ["Users"],
-                "security": [{"bearerAuth": []}],
-                "responses": {
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-
-        "/users/{id}": {
-            "get": {
-                "summary": "Buscar um usuário pelo id",
-                "description": "Busca um usuário pelo id",
-                "tags": ["Users"],
-                "security": [{"bearerAuth": []}],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Id do usuário para a busca",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/User"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-
-            "delete": {
-                "summary": "Deleta um usuário",
-                "description": "Deleta um usuário através do Token",
-                "tags": ["Users"],
-                "security": [{"bearerAuth": []}],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Id do usuário para deletar",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
+                                    "$ref": "#/components/schemas/Admin"
                                 }
                             }
                         }
@@ -985,27 +870,17 @@
                 }
             },
 
-            "User": {
+            "Admin": {
                 "type": "object",
                 "properties": {
                     "name": {
                         "type": "string"
                     },
-                    "cpf": {
-                        "type": "string"
-                    },
                     "password": {
-                        "type": "number"
-                    }
-                }
-            },
-            "Token": {
-                "type": "object",
-                "properties": {
-                    "token": {
                         "type": "string"
                     }
-                }
+                },
+                "required": ["name", "password"]
             }
         }, 
         "securitySchemes": {

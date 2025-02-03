@@ -10,6 +10,7 @@ import usersRouter from "./route/user/RouterUserController.js";
 import authRouter from "./route/auth/RouterAuthController.js";
 import termsRouter from "./route/terms/RouterTerms.js";
 import establishmentsRouter from "./route/establishment/RouterEstablishmentController.js";
+import adminRoutes from "./route/admin/adminRoutes.js";
 
 const app: Express  = express();
 const port: Number  = 3000;
@@ -25,6 +26,7 @@ app.use(usersRouter);
 app.use(authRouter)
 app.use(termsRouter)
 app.use(establishmentsRouter);
+app.use(adminRoutes);
 
 app.get("/v1", (request: Request, response: Response) => {
     response.send("Hello World!");
