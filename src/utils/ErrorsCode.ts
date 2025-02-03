@@ -9,26 +9,29 @@ const INVALID_CPF_OR_PASSWORD = "Invalid CPF or password";
 const INVALID_UNRECOGNIZED_ERROR = "Ocorreu um erro desconhecido. Contate o suporte!";
 const INVALID_UNKNOWN = "Unrecognized error. Contact the support!";
 
+
+const INVALID_USER_BY_ID = "User already exists with this ID";
+const INVALID_USER_ALREADY_EXISTS = "User already exists with this CPF";
+const INVALID_USER_ROLE_ADMIN = "User dont have admin role permission";
+
+
 const errors_auth_code = {
     INVALID_TOKEN,
     INVALID_TOKEN_EXPIRED,
     INVALID_PASSWORD,
     INVALID_SECRET_KEY,
     INVALID_TOKEN_NOT_AUTHORIZED,
-    INVALID_USER_BY_CPF,
+    INVALID_USER_BY_ID,
     INVALID_ROLE_UNAUTHORIZED,
     INVALID_CPF_OR_PASSWORD,
     INVALID_UNRECOGNIZED_ERROR,
     INVALID_UNKNOWN
 }
 
-const INVALID_USER_BY_ID = "User already exists with this ID";
-const INVALID_USER_ALREADY_EXISTS = "User already exists with this CPF";
-const INVALID_USER_ROLE_ADMIN = "User dont have admin role permission";
-
 const INVALID_PRODUCT_BY_ID = "Product not found by ID";
 
 const INVALID_ESTABLISHMENT_BY_ID = "Establishment not found by ID";
+const INVALID_ESTABLISHMENT_ALREADY_EXIST = "Establishment already exists with this ID";
 
 const errors_user_code = {
     INVALID_USER_BY_ID,
@@ -48,6 +51,7 @@ const errors_product_code = {
 }
 
 const errors_establishment_code = {
+    INVALID_ESTABLISHMENT_ALREADY_EXIST,
     INVALID_UNRECOGNIZED_ERROR,
     INVALID_ESTABLISHMENT_BY_ID
 }

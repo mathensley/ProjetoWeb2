@@ -17,25 +17,25 @@ const getProductController = new GetProductController();
 const deleteProducByIdController = new DeleteProducByIdController();
 const updateProductService = new UpdateProductController();
 
-productsRouter.post("/v1/products", 
+productsRouter.post("/api/products", 
     authService.verifyToken, 
     (request: Request, response: Response) => {createProductController.handle(request, response)}
 );
 
-productsRouter.get("/v1/products/:id", 
+productsRouter.get("/api/products/:id", 
     (request: Request, response: Response) => {getProductByIdController.handle(request, response)}
 );
 
-productsRouter.get("/v1/products", 
+productsRouter.get("/api/products", 
     (request: Request, response: Response) => {getProductController.handle(request, response)}
 );
 
-productsRouter.put("/v1/products/:id", 
+productsRouter.put("/api/products/:id", 
     authService.verifyToken, 
     (request: Request, response: Response) => {updateProductService.handle(request, response)}
 );
 
-productsRouter.delete("/v1/products/:id", 
+productsRouter.delete("/api/products/:id", 
     authService.verifyToken, 
     (request: Request, response: Response) => {deleteProducByIdController.handle(request, response)}
 );

@@ -13,8 +13,8 @@ export class BcryptUtil {
         return isMath;
     }
 
-    static async getCpfByToken(token: string): Promise<string> {
-        const { cpf } = jwt.decode(token) as {cpf: "string", iat: number};
-        return cpf;
+    static async getId(token: string): Promise<string> {
+        const { id } = jwt.decode(token) as {id: "string", iat: number};
+        return id;
     }
 }
