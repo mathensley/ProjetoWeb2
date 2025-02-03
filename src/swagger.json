@@ -506,6 +506,60 @@
                         }
                     }
                 }
+            }, 
+            
+            "put": {
+                "summary": "Atualiza um produto",
+                "description": "Atualiza um produto através do id",
+                "tags": ["Products"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do produto a ser atualizado",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Product"
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "name": "Bolo de chocolate",
+                                        "description": "Bolo de chocolate médio",
+                                        "image": "image",
+                                        "category": "BOLO",
+                                        "price": 200.00
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Product already exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
 
@@ -522,7 +576,7 @@
                                 "$ref": "#/components/schemas/Establishment"
                             },
                             "examples": {
-                                "product": {
+                                "establisment": {
                                     "value": {
                                         "name": "LaPatisserie - Campina Grande",
                                         "address": "Rua Aprigio Velozo",
@@ -631,6 +685,62 @@
                             "application/json": {
                                 "schema": {
                                     "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            "put": {
+                "summary": "Atualiza um estabelecimento",
+                "description": "Atualiza um estabelecimento através do id",
+                "tags": ["Establishment"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do estabelecimento a ser atulizado",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Establishment"
+                            },
+                            "examples": {
+                                "establisment": {
+                                    "value": {
+                                        "name": "LaPatisserie - Campina Grande",
+                                        "address": "Rua Aprigio Velozo",
+                                        "city": "Campina Grande",
+                                        "state": "Paraíba",
+                                        "cep": "58840-000",
+                                        "email": "email@gmail.com",
+                                        "phone": "(83) 999999999"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Establishment not found by ID"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Establishment"
                                 }
                             }
                         }

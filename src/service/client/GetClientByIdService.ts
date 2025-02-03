@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { Client, PrismaClient } from '@prisma/client';
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 export class GetClientByIdService {
@@ -8,7 +8,7 @@ export class GetClientByIdService {
         this.prismaClient = prismaClient || new PrismaClient();
     }
 
-    async get(id: string) {
+    async get(id: string): Promise<Client> {
         try {
             const client = await this.prismaClient.client.findUnique({where: {id}});
             if (!client) {
