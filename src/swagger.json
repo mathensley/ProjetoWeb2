@@ -563,6 +563,321 @@
             }
         },
 
+        "/products/name/{id}": {
+            "patch": {
+                "summary": "Atualiza o nome do produto",
+                "description": "Atualiza o nome dp produto através do id",
+                "tags": ["Products"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do produto a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["name"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "name": "Bolo de chocolate"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Product not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/products/description/{id}": {
+            "patch": {
+                "summary": "Atualiza a descrição do produto",
+                "description": "Atualiza a descrição do produto através do id",
+                "tags": ["Products"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do produto a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["description"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "description": "Bolo de chocolate com cereja"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Product not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/products/image/{id}": {
+            "patch": {
+                "summary": "Atualiza o nome do produto",
+                "description": "Atualiza o nome dp produto através do id",
+                "tags": ["Products"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do produto a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "image": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["image"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "image": "Bolo de chocolate"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Product not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/products/price/{id}": {
+            "patch": {
+                "summary": "Atualiza o preço do produto",
+                "description": "Atualiza o preço dp produto através do id",
+                "tags": ["Products"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do produto a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "preco": {
+                                        "type": "number"
+                                    }
+                                },
+                                "required": ["preco"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "preco": 200.00
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Product not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/products/promotion/{id}": {
+            "patch": {
+                "summary": "Atualiza a promoção do produto",
+                "description": "Atualiza o atributo de promoção de um produto através do id",
+                "tags": ["Products"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do produto a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "promotion": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["promotion"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "promotion": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Product not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
         "/establishments": {
             "post": {
                 "summary": "Cadastro de estabelecimentos",
