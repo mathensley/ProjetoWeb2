@@ -10,11 +10,11 @@ export class AuthController {
     }
 
     async login(request: Request, response: Response) {
-        const { cpf, password } = request.body;
+        const { id, password } = request.body;
     
         try {
-            if (cpf && password) {
-                const token = await this.authService.login(cpf, password);
+            if (id && password) {
+                const token = await this.authService.login(id, password);
                 response.status(200).json({
                     token
                 });

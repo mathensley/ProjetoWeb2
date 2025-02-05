@@ -33,6 +33,10 @@ O site foi desenvolvido utilizando as melhores ferramentas de front-end e back-e
 Com o site da La Douceur de Campina, a experiência de saborear os produtos franceses da confeitaria se torna ainda mais prática e agradável, garantindo que cada evento e celebração seja marcado por sabores irresistíveis e memoráveis.
 
 
+## Diagrama 
+
+![Modelo Banco de Dados do Prisma](./src/utils/imgs/ModeloDBPrisma.png)
+
 ## Como executar o projeto
 
 Siga os passos abaixo para configurar e executar o projeto:
@@ -50,12 +54,29 @@ npm install
 
 - **Node.js**: Certifique-se de ter uma versão superior a 16 instalada. Você pode gerenciar versões do Node.js usando o [nvm](https://github.com/nvm-sh/nvm).
 - **npm**: Instalado junto com o Node.js.
+- **PostgreSQL**
 
 - Execute o comando abaixo no terminal, na raiz do projeto
 
 ```bash
 nvm use 16
 ```
+
+### PostgreSQL
+
+- Execute o comando abaixo no terminal
+
+```
+psql -U postgres -h localhost
+```
+
+- Após isso, execute o próximo comando para criar o usuário
+
+```
+CREATE USER admin WITH PASSWORD 'admin';
+```
+
+Lembre-se de garantir que o usuário tenha permissão para criar banco de dados.
 
 ### Criar as migrations
 

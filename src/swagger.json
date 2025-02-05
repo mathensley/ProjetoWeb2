@@ -11,7 +11,7 @@
     },
     "servers": [
         {
-            "url": "http://localhost:3000/v1",
+            "url": "http://localhost:3000/api",
             "description": "API de Teste"
         },
         {
@@ -20,6 +20,367 @@
         }
     ],
     "paths": {
+        "/clients": {
+            "post": {
+                "summary": "Cadastro de cliente",
+                "description": "Essa rota será responsável por cadastrar os clientes",
+                "tags": ["Clients"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Client"
+                            },
+                            "examples": {
+                                "client": {
+                                    "value": {
+                                        "name": "João Silva",
+                                        "username": "joaosilva",
+                                        "password": "senha123",
+                                        "cpf": "123.456.789-00",
+                                        "email": "joao@email.com",
+                                        "phone": "999999999",
+                                        "address": "Rua das Flores, 123",
+                                        "city": "São Paulo",
+                                        "state": "SP",
+                                        "cep": "01010-000"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Cliente já existe"
+                    },
+                    "201": {
+                        "description": "Cliente cadastrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Client"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            "get": {
+                "summary": "Buscar todos os clientes",
+                "description": "Busca todos os clientes cadastrados",
+                "tags": ["Clients"],
+                "responses": {
+                    "200": {
+                        "description": "Lista de clientes",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                         "$ref": "#/components/schemas/Client"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/clients/{id}": {
+            "get": {
+                "summary": "Buscar um cliente pelo id",
+                "description": "Busca um cliente pelo seu id",
+                "tags": ["Clients"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do cliente para a busca",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "$ref": "#/components/schemas/Client"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            "put": {
+                "summary": "Atualizar um cliente",
+                "description": "Atualiza os dados de um cliente pelo seu ID",
+                "tags": ["Clients"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do cliente a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Client"
+                            },
+                            "examples": {
+                                "updateClient": {
+                                    "value": {
+                                        "name": "Maria Souza",
+                                        "username": "mariasouza",
+                                        "password": "novaSenha123",
+                                        "email": "maria@email.com",
+                                        "phone": "888888888",
+                                        "address": "Av. Paulista, 500",
+                                        "city": "São Paulo",
+                                        "state": "SP",
+                                        "cep": "01310-000"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Cliente atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Client"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Dados inválidos"
+                    },
+                    "500": {
+                        "description": "Cliente não encontrado"
+                    }
+                }
+            },
+
+            "delete": {
+                "summary": "Deleta um cliente",
+                "description": "Deleta um cliente pelo seu id",
+                "tags": ["Clients"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description":"Id do cliente para deletar",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/delivery_riders": {
+            "post": {
+                "summary": "Cadastro de Entregador",
+                "description": "Essa rota será responsável por cadastrar os entregadores",
+                "tags": ["DeliveryRiders"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeliveryRider"
+                            },
+                            "examples": {
+                                "client": {
+                                    "value": {
+                                        "name": "José Alvez",
+                                        "password": "deumasete",
+                                        "license_plate": "244GRAU"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Entregador já existe"
+                    },
+                    "201": {
+                        "description": "Entregador cadastrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeliveryRider"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            "get": {
+                "summary": "Buscar todos os entregadores",
+                "description": "Busca todos os entregadores cadastrados",
+                "tags": ["DeliveryRiders"],
+                "responses": {
+                    "200": {
+                        "description": "Lista de entregadores",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                         "$ref": "#/components/schemas/DeliveryRider"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/delivery_riders/{id}": {
+            "get": {
+                "summary": "Buscar um entregador pelo id",
+                "description": "Busca um entregador pelo seu id",
+                "tags": ["DeliveryRiders"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do entregador para a busca",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "$ref": "#/components/schemas/DeliveryRider"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            "put": {
+                "summary": "Atualizar um entregador",
+                "description": "Atualiza os dados de um entregador pelo seu ID",
+                "tags": ["DeliveryRiders"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do entregador a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeliveryRider"
+                            },
+                            "examples": {
+                                "updateDeliveryRider": {
+                                    "value": {
+                                        "name": "Maria Souza",
+                                        "password": "novaSenha123",
+                                        "license_plate": "MILGRAU"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Entregador atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeliveryRider"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Dados inválidos"
+                    },
+                    "500": {
+                        "description": "Entregador não encontrado"
+                    }
+                }
+            },
+
+            "delete": {
+                "summary": "Deleta um entregador",
+                "description": "Deleta um entregador pelo seu id",
+                "tags": ["DeliveryRiders"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description":"Id do entregador para deletar",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
         "/products": {
             "post": {
                 "summary": "Cadastro de produto",
@@ -85,30 +446,9 @@
                         }
                     }
                 }
-            }, 
-
-            "delete": {
-                "summary": "Deleta todos os produtos",
-                "description": "Deleta todos os produtos através do Token",
-                "tags": ["Products"],
-                "security": [{"bearerAuth": []}],
-                "responses": {
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
             }
         },
+
         "/products/{id}": {
             "get": {
                 "summary": "Buscar um produto pelo id",
@@ -166,27 +506,400 @@
                         }
                     }
                 }
-            }
-        },
-
-        "/users": {
-            "post": {
-                "summary": "Cadastro de usuário",
-                "description": "Essa rota irá ser responsável por cadastrar os usuários",
-                "tags": ["Users"],
+            }, 
+            
+            "put": {
+                "summary": "Atualiza um produto",
+                "description": "Atualiza um produto através do id",
+                "tags": ["Products"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do produto a ser atualizado",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/User"
+                                "$ref": "#/components/schemas/Product"
                             },
                             "examples": {
-                                "user": {
+                                "product": {
                                     "value": {
-                                        "name": "Levi",
-                                        "cpf": "99999999999",
-                                        "password": "10101010",
-                                        "role": "ADMIN"
+                                        "name": "Bolo de chocolate",
+                                        "description": "Bolo de chocolate médio",
+                                        "image": "image",
+                                        "category": "BOLO",
+                                        "price": 200.00
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Product already exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/products/name/{id}": {
+            "patch": {
+                "summary": "Atualiza o nome do produto",
+                "description": "Atualiza o nome dp produto através do id",
+                "tags": ["Products"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do produto a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["name"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "name": "Bolo de chocolate"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Product not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/products/description/{id}": {
+            "patch": {
+                "summary": "Atualiza a descrição do produto",
+                "description": "Atualiza a descrição do produto através do id",
+                "tags": ["Products"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do produto a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["description"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "description": "Bolo de chocolate com cereja"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Product not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/products/image/{id}": {
+            "patch": {
+                "summary": "Atualiza o nome do produto",
+                "description": "Atualiza o nome dp produto através do id",
+                "tags": ["Products"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do produto a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "image": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["image"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "image": "Bolo de chocolate"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Product not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/products/price/{id}": {
+            "patch": {
+                "summary": "Atualiza o preço do produto",
+                "description": "Atualiza o preço dp produto através do id",
+                "tags": ["Products"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do produto a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "preco": {
+                                        "type": "number"
+                                    }
+                                },
+                                "required": ["preco"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "preco": 200.00
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Product not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/products/promotion/{id}": {
+            "patch": {
+                "summary": "Atualiza a promoção do produto",
+                "description": "Atualiza o atributo de promoção de um produto através do id",
+                "tags": ["Products"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do produto a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "promotion": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["promotion"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "promotion": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Product not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/establishments": {
+            "post": {
+                "summary": "Cadastro de estabelecimentos",
+                "description": "Essa rota irá ser responsável por cadastrar os estabelecimentos",
+                "tags": ["Establishment"],
+                "security": [{"bearerAuth": []}],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Establishment"
+                            },
+                            "examples": {
+                                "establisment": {
+                                    "value": {
+                                        "name": "LaPatisserie - Campina Grande",
+                                        "address": "Rua Aprigio Velozo",
+                                        "city": "Campina Grande",
+                                        "state": "Paraíba",
+                                        "cep": "58840-000",
+                                        "email": "email@gmail.com",
+                                        "phone": "(83) 999999999"
                                     }
                                 }
                             }
@@ -198,31 +911,7 @@
                         "description": "Unauthorized"
                     },
                     "400": {
-                        "description": "User already exist"
-                    },
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "$ref": "#/components/schemas/User"
-                                }
-                            }
-                        }
-                    }
-                }
-
-            },
-
-            "get": {
-                "summary": "Buscar todos os usuários",
-                "description": "Busca todos os usuários já cadastrados",
-                "tags": ["Users"],
-                "security": [{"bearerAuth": []}],
-                "responses": {
-                    "401": {
-                        "description": "Unauthorized"
+                        "description": "Product already exists"
                     },
                     "200": {
                         "description": "OK",
@@ -230,29 +919,27 @@
                             "application/json": {
                                 "schema": {
                                     "type": "object",
-                                    "$ref": "#/components/schemas/User"
+                                    "$ref": "#/components/schemas/Establishment"
                                 }
                             }
                         }
                     }
                 }
-            },
 
-            "delete": {
-                "summary": "Deleta todos os usuários",
-                "description": "Deleta todos os usuários através do Token",
-                "tags": ["Users"],
+            },
+            "get": {
+                "summary": "Buscar todos os estabelecimentos",
+                "description": "Busca todos os produtos já estabelecimentos",
+                "tags": ["Establishment"],
                 "security": [{"bearerAuth": []}],
                 "responses": {
-                    "401": {
-                        "description": "Unauthorized"
-                    },
                     "200": {
                         "description": "OK",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object"
+                                    "type": "array",
+                                    "$ref": "#/components/schemas/EstablishmentResponse"
                                 }
                             }
                         }
@@ -261,48 +948,45 @@
             }
         },
 
-        "/users/{id}": {
+        "/establishments/{id}": {
             "get": {
-                "summary": "Buscar um usuário pelo id",
-                "description": "Busca um usuário pelo id",
-                "tags": ["Users"],
+                "summary": "Buscar um estabelecimento pelo id",
+                "description": "Busca um estabelecimento pelo id",
+                "tags": ["Establishment"],
                 "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Id do usuário para a busca",
+                        "description": "Id do estabelecimento para a busca",
                         "required": true
                     }
                 ],
                 "responses": {
-                    "401": {
-                        "description": "Unauthorized"
-                    },
                     "200": {
                         "description": "OK",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/User"
+                                    "type": "array",
+                                    "$ref": "#/components/schemas/EstablishmentResponse"
                                 }
                             }
                         }
                     }
                 }
             },
-
+            
             "delete": {
-                "summary": "Deleta um usuário",
-                "description": "Deleta um usuário através do Token",
-                "tags": ["Users"],
+                "summary": "Deleta um estabeelcimento",
+                "description": "Deleta um estabelecimento através do Token",
+                "tags": ["Establishment"],
                 "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Id do usuário para deletar",
+                        "description": "Id do estabelecimento para deletar",
                         "required": true
                     }
                 ],
@@ -316,6 +1000,102 @@
                             "application/json": {
                                 "schema": {
                                     "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            "put": {
+                "summary": "Atualiza um estabelecimento",
+                "description": "Atualiza um estabelecimento através do id",
+                "tags": ["Establishment"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do estabelecimento a ser atulizado",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Establishment"
+                            },
+                            "examples": {
+                                "establisment": {
+                                    "value": {
+                                        "name": "LaPatisserie - Campina Grande",
+                                        "address": "Rua Aprigio Velozo",
+                                        "city": "Campina Grande",
+                                        "state": "Paraíba",
+                                        "cep": "58840-000",
+                                        "email": "email@gmail.com",
+                                        "phone": "(83) 999999999"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Establishment not found by ID"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Establishment"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/admins": {
+            "post": {
+                "summary": "Cadastro de Admin",
+                "description": "Essa rota será responsável por cadastrar os admins",
+                "tags": ["Admins"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Admin"
+                            },
+                            "examples": {
+                                "admin": {
+                                    "value": {
+                                        "name": "Carlos",
+                                        "password": "senha123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Admin já existe"
+                    },
+                    "201": {
+                        "description": "Admin cadastrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Admin"
                                 }
                             }
                         }
@@ -335,7 +1115,7 @@
                             "examples": {
                                 "auth": {
                                     "value": {
-                                        "cpf": "999999999",
+                                        "id": "999999999",
                                         "password": "10101010"
                                     }
                                 }
@@ -365,6 +1145,42 @@
     },
     "components": {
         "schemas": {
+            "Client": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "phone": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    }
+                },
+                "required": ["name", "email", "phone", "address"]
+            },
+
+            "DeliveryRider": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "license_plate": {
+                        "type": "string"
+                    }
+                },
+                "required": ["name", "password", "license_plate"]
+            },
+
             "Product": {
                 "type": "object",
                 "properties": {
@@ -386,6 +1202,7 @@
                     }
                 }
             },
+
             "ProductResponse": {
                 "type": "object",
                 "properties": {
@@ -419,27 +1236,76 @@
                     }
                 }
             },
-            "User": {
+
+            "Establishment": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "city": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
+                    },
+                    "cep": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "type": "string"
+                    }
+                }
+            },
+
+            "EstablishmentResponse": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "city": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
+                    },
+                    "cep": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "type": "string"
+                    }
+                }
+            },
+
+            "Admin": {
                 "type": "object",
                 "properties": {
                     "name": {
                         "type": "string"
                     },
-                    "cpf": {
-                        "type": "string"
-                    },
                     "password": {
-                        "type": "number"
-                    }
-                }
-            },
-            "Token": {
-                "type": "object",
-                "properties": {
-                    "token": {
                         "type": "string"
                     }
-                }
+                },
+                "required": ["name", "password"]
             }
         }, 
         "securitySchemes": {
