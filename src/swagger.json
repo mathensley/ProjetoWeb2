@@ -978,7 +978,7 @@
             },
             
             "delete": {
-                "summary": "Deleta um estabeelcimento",
+                "summary": "Deleta um estabelecimento",
                 "description": "Deleta um estabelecimento através do Token",
                 "tags": ["Establishment"],
                 "security": [{"bearerAuth": []}],
@@ -1061,6 +1061,447 @@
                         }
                     }
                 }
+            }
+        },
+        
+        "/establishments/address/{id}": {
+            "patch": {
+                "summary": "Atualiza o endereço do estabelecimento",
+                "description": "Atualiza o endereço do estabelecimento através do id",
+                "tags": ["Establishment"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do estabelecimento a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "address": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["address"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "address": "Rua das Flores, 123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Establishment not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Establishment"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/establishments/cep/{id}": {
+            "patch": {
+                "summary": "Atualiza o cep do estabelecimento",
+                "description": "Atualiza o cep do estabelecimento através do id",
+                "tags": ["Establishment"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do estabelecimento a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "cep": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["cep"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "cep": "58475-000"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Establishment not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Establishment"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/establishments/city/{id}": {
+            "patch": {
+                "summary": "Atualiza a cidade do estabelecimento",
+                "description": "Atualiza a cidade do estabelecimento através do id",
+                "tags": ["Establishment"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do estabelecimento a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "city": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["address"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "city": "Campina Grande"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Establishment not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Establishment"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/establishments/email/{id}": {
+            "patch": {
+                "summary": "Atualiza o email do estabelecimento",
+                "description": "Atualiza o email do estabelecimento através do id",
+                "tags": ["Establishment"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do estabelecimento a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["email"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "email": "email@gmail.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Establishment not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Establishment"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/establishments/name/{id}": {
+            "patch": {
+                "summary": "Atualiza o nome do estabelecimento",
+                "description": "Atualiza o nome do estabelecimento através do id",
+                "tags": ["Establishment"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do estabelecimento a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["name"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "name": "Rua das Flores, 123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Establishment not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Establishment"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/establishments/phone/{id}": {
+            "patch": {
+                "summary": "Atualiza o telefone do estabelecimento",
+                "description": "Atualiza o telefone do estabelecimento através do id",
+                "tags": ["Establishment"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do estabelecimento a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "phone": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["phone"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "phone": "(83) 99999-9999"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Establishment not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Establishment"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/establishments/state/{id}": {
+            "patch": {
+                "summary": "Atualiza o estado do estabelecimento",
+                "description": "Atualiza o estado do estabelecimento através do id",
+                "tags": ["Establishment"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do estabelecimento a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "state": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["state"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "state": "PB"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Establishment not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Establishment"
+                                }
+                            }
+                        }
+                    }
+                }
+
             }
         },
 
