@@ -10,7 +10,7 @@ export class UpdateImageProductController {
     }
 
     async handle(request: Request, response: Response) {
-        const { id } = request.query;
+        const { id } = request.params;
         const { image } = request.body;
 
         try {

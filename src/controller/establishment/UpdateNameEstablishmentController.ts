@@ -10,7 +10,7 @@ export class UpdateNameEstablishmentController {
     }
 
     async handle(request: Request, response: Response) {
-        const { id } = request.query;
+        const { id } = request.params;
         const { name } = request.body;
 
         try {

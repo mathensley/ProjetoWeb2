@@ -10,7 +10,7 @@ export class UpdatePromotionProductController {
     }
 
     async handle(request: Request, response: Response) {
-        const { id } = request.query;
+        const { id } = request.params;
         const { promotion } = request.body;
 
         try {

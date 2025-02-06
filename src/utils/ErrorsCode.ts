@@ -47,7 +47,7 @@ const INVALID_PRODUCT_ALREADY_EXIST = "Product already exists with this ID";
 const errors_product_code = {
     INVALID_UNRECOGNIZED_ERROR,
     INVALID_PRODUCT_ALREADY_EXIST,
-    INVALID_PRODUCT_BY_ID
+    INVALID_PRODUCT_BY_ID,
 }
 
 const errors_establishment_code = {

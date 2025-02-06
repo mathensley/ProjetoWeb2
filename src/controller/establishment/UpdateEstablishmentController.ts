@@ -11,7 +11,7 @@ export class UpdateEstablishmentController {
     }
 
     async handle(request: Request, response: Response) {
-        const { id } = request.query;
+        const { id } = request.params;
         const establishment: Establishment = request.body;
 
         try {

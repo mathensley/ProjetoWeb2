@@ -10,7 +10,7 @@ export class UpdateCEPEstablishmentController {
     }
 
     async handle(request: Request, response: Response) {
-        const { id } = request.query;
+        const { id } = request.params;
         const { cep } = request.body;
 
         try {

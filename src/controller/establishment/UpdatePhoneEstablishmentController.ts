@@ -10,7 +10,7 @@ export class UpdatePhoneEstablishmentController {
     }
 
     async handle(request: Request, response: Response) {
-        const { id } = request.query;
+        const { id } = request.params;
         const { phone } = request.body;
 
         try {

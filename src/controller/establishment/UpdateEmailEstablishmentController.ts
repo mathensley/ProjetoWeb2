@@ -10,7 +10,7 @@ export class UpdateEmailEstablishmentController {
     }
 
     async handle(request: Request, response: Response) {
-        const { id } = request.query;
+        const { id } = request.params;
         const { email } = request.body;
 
         try {

@@ -10,7 +10,7 @@ export class UpdateProductController {
     }
 
     async handle(request: Request, response: Response) {
-        const { id } = request.query;
+        const { id } = request.params;
         const product: Product = request.body;
 
         try {

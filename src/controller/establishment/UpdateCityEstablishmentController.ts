@@ -10,7 +10,7 @@ export class UpdateCityEstablishmentController {
     }
 
     async handle(request: Request, response: Response) {
-        const { id } = request.query;
+        const { id } = request.params;
         const { city } = request.body;
 
         try {

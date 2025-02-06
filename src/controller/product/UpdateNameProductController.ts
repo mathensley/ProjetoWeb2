@@ -10,11 +10,10 @@ export class UpdateNameProductController {
     }
 
     async handle(request: Request, response: Response) {
-        const { id } = request.query;
+        const { id } = request.params;
         const { name } = request.body;
 
         try {
-            return response.status(200).json({ok: "ok"})
             const productResponse: Product = await this.updateNameProductService.update(String(id), name);
             return response.status(200).json(productResponse);
 
