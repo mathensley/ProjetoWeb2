@@ -1802,6 +1802,58 @@
                         }
                     }
                 }
+            },
+
+            "get": {
+                "summary": "Buscar todos os admins",
+                "description": "Busca todos os admins cadastrados",
+                "tags": ["Admins"],
+                "responses": {
+                    "200": {
+                        "description": "Lista de admins",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                         "$ref": "#/components/schemas/Admin"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/admins/{id}": {
+            "delete": {
+                "summary": "Deleta um admin",
+                "description": "Deleta um admin pelo seu id",
+                "tags": ["Admins"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description":"Id do admin para deletar",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
 
