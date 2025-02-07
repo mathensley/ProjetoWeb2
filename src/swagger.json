@@ -483,6 +483,7 @@
                                     "value": {
                                         "name": "José Alvez",
                                         "password": "deumasete",
+                                        "cpf": "111.222.333-44",
                                         "license_plate": "244GRAU"
                                     }
                                 }
@@ -613,6 +614,7 @@
                                     "value": {
                                         "name": "Maria Souza",
                                         "password": "novaSenha123",
+                                        "cpf": "444.555.666-77",
                                         "license_plate": "MILGRAU"
                                     }
                                 }
@@ -1780,7 +1782,8 @@
                                 "admin": {
                                     "value": {
                                         "name": "Carlos",
-                                        "password": "senha123"
+                                        "password": "senha123",
+                                        "cpf": "987.654.321-10"
                                     }
                                 }
                             }
@@ -1927,11 +1930,14 @@
                     "password": {
                         "type": "string"
                     },
+                    "cpf": {
+                        "type": "string"
+                    },
                     "license_plate": {
                         "type": "string"
                     }
                 },
-                "required": ["name", "password", "license_plate"]
+                "required": ["name", "password", "cpf", "license_plate"]
             },
 
             "Product": {
@@ -2056,9 +2062,12 @@
                     },
                     "password": {
                         "type": "string"
+                    },
+                    "cpf": {
+                        "type": "string"
                     }
                 },
-                "required": ["name", "password"]
+                "required": ["name", "password", "cpf"]
             }
         }, 
         "securitySchemes": {

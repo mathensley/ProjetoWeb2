@@ -17,6 +17,7 @@ model Admin {
   id              String          @id @default(uuid())
   name            String
   password        String
+  cpf             String          @unique
 
   establishment   Establishment?
 }
@@ -47,7 +48,7 @@ model DeliveryRider {
   license_plate   String          @unique
   created_at      DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
-
+  cpf             String          @unique
   establishment   Establishment?  @relation(fields: [establishmentId], references: [id])
   establishmentId String?
 }
