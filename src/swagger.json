@@ -643,6 +643,68 @@
             }
         },
 
+        "/delivery_riders/password/{id}": {
+            "patch": {
+                "summary": "Atualiza a senha do entregador",
+                "description": "Atualiza a senha do entregador pelo o id",
+                "tags": ["DeliveryRiders"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do entregador a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["password"]
+                            },
+                            "examples": {
+                                "updateUsername": {
+                                    "value": {
+                                        "password": "deumasete"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Entregador não encontrado"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/DeliveryRider"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
         "/products": {
             "post": {
                 "summary": "Cadastro de produto",
