@@ -10,11 +10,11 @@ export class AuthController {
     }
 
     async login(request: Request, response: Response) {
-        const { id, password } = request.body;
+        const { cpf, password } = request.body;
     
         try {
-            if (id && password) {
-                const token = await this.authService.login(id, password);
+            if (cpf && password) {
+                const token = await this.authService.login(cpf, password);
                 response.status(200).json({
                     token
                 });
@@ -24,12 +24,11 @@ export class AuthController {
 
         } catch(error) {
             if (error instanceof Error) {
-                response.status(500).json({
+                return response.status(500).json({
                     message: error.message
                 });
             }
-
-            response.status(500).json({
+            return response.status(500).json({
                 message: errors_auth_code.INVALID_UNRECOGNIZED_ERROR
             })
         }

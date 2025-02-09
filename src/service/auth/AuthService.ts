@@ -1,4 +1,4 @@
-import { Admin, User } from "@prisma/client";
+import { Admin } from "@prisma/client";
 import { NextFunction, Request, Response } from "express";
 import { BcryptUtil } from "../../utils/BCryptUtils.js";
 import { errors_auth_code } from "../../utils/ErrorsCode.js";
@@ -10,16 +10,16 @@ const SECRET = process.env.SECRET
 
 export class AuthService {
 
-    async login(id: string, password: string) {
+    async login(cpf: string, password: string) {
         if (!SECRET) {
             throw new Error(errors_auth_code.INVALID_SECRET_KEY);
         } 
 
         try {
-            const adminRecovery: Admin | null= await prismaClient.admin.findUnique({where: {id}});
+            const adminRecovery: Admin | null = await prismaClient.admin.findUnique({where: {cpf}});
             
             if (!adminRecovery) {
-                throw new Error(errors_auth_code.INVALID_USER_BY_ID);
+                throw new Error("Not a valid admin");
             }
 
             const validationPassword = await BcryptUtil.comparePassword(password, adminRecovery.password);
