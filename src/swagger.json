@@ -2087,6 +2087,14 @@
                 }
             },
 
+            "Token": {
+                "properties": {
+                    "token": {
+                        "type": "string"
+                    }
+                }
+            },
+
             "EstablishmentResponse": {
                 "properties": {
                     "id": {

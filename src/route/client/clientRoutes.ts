@@ -9,7 +9,6 @@ import { UpdateAddressClientController } from "../../controller/client/UpdateAdd
 import { UpdatePhoneClientController } from "../../controller/client/UpdatePhoneClientController.js";
 import { UpdateUsernameClientController } from "../../controller/client/UpdateUsernameClientController.js";
 import { UpdatePasswordClientController } from "../../controller/client/UpdatePasswordClientController.js";
-import { AuthService } from "../../service/auth/AuthService.js";
 
 const clientRoutes = Router();
 
