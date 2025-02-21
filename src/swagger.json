@@ -117,6 +117,35 @@
                 }
             },
 
+            "delete": {
+                "summary": "Deleta um cliente",
+                "description": "Deleta um cliente pelo seu id",
+                "tags": ["Clients"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description":"Id do cliente para deletar",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
             "put": {
                 "summary": "Atualizar um cliente",
                 "description": "Atualiza os dados de um cliente pelo seu ID",
@@ -175,35 +204,266 @@
                         "description": "Cliente não encontrado"
                     }
                 }
-            },
+            }
+        },
 
-            "delete": {
-                "summary": "Deleta um cliente",
-                "description": "Deleta um cliente pelo seu id",
+        "/clients/address/{id}": {
+            "patch": {
+                "summary": "Atualiza o endereço do cliente",
+                "description": "Atualiza o endereço geral (endereço, cidade, estado, cep) do cliente pelo o id",
                 "tags": ["Clients"],
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description":"Id do cliente para deletar",
-                        "required": true
+                        "description": "Id do cliente a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "city": {
+                                        "type": "string"
+                                    },
+                                    "state": {
+                                        "type": "string"
+                                    },
+                                    "cep": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["address", "city", "state", "cep"]
+                            },
+                            "examples": {
+                                "updateAddress": {
+                                    "value": {
+                                        "address": "Av. Paulista, 500",
+                                        "city": "São Paulo",
+                                        "state": "SP",
+                                        "cep": "01310-000"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
                 "responses": {
                     "401": {
                         "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Cliente não encontrado"
                     },
                     "200": {
                         "description": "OK",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object"
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Client"
                                 }
                             }
                         }
                     }
                 }
+
+            }
+        },
+
+        "/clients/phone/{id}": {
+            "patch": {
+                "summary": "Atualiza o telefone do cliente",
+                "description": "Atualiza o telefone do cliente pelo o id",
+                "tags": ["Clients"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do cliente a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "phone": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["phone"]
+                            },
+                            "examples": {
+                                "updatePhone": {
+                                    "value": {
+                                        "phone": "(83) 99999-9999"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Cliente não encontrado"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Client"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/clients/username/{id}": {
+            "patch": {
+                "summary": "Atualiza o nome do usuário do cliente",
+                "description": "Atualiza o nome do usuário do cliente pelo o id",
+                "tags": ["Clients"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do cliente a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "username": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["username"]
+                            },
+                            "examples": {
+                                "updateUsername": {
+                                    "value": {
+                                        "username": "joao_silva"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Cliente não encontrado"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Client"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/clients/password/{id}": {
+            "patch": {
+                "summary": "Atualiza a senha do cliente",
+                "description": "Atualiza a senha do cliente pelo o id",
+                "tags": ["Clients"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do cliente a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["password"]
+                            },
+                            "examples": {
+                                "updateUsername": {
+                                    "value": {
+                                        "password": "deumasete"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Cliente não encontrado"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Client"
+                                }
+                            }
+                        }
+                    }
+                }
+
             }
         },
 
@@ -223,6 +483,7 @@
                                     "value": {
                                         "name": "José Alvez",
                                         "password": "deumasete",
+                                        "cpf": "111.222.333-44",
                                         "license_plate": "244GRAU"
                                     }
                                 }
@@ -297,60 +558,6 @@
                 }
             },
 
-            "put": {
-                "summary": "Atualizar um entregador",
-                "description": "Atualiza os dados de um entregador pelo seu ID",
-                "tags": ["DeliveryRiders"],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Id do entregador a ser atualizado",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/DeliveryRider"
-                            },
-                            "examples": {
-                                "updateDeliveryRider": {
-                                    "value": {
-                                        "name": "Maria Souza",
-                                        "password": "novaSenha123",
-                                        "license_plate": "MILGRAU"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Entregador atualizado com sucesso",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/DeliveryRider"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Dados inválidos"
-                    },
-                    "500": {
-                        "description": "Entregador não encontrado"
-                    }
-                }
-            },
-
             "delete": {
                 "summary": "Deleta um entregador",
                 "description": "Deleta um entregador pelo seu id",
@@ -378,6 +585,123 @@
                         }
                     }
                 }
+            },
+
+            "put": {
+                "summary": "Atualizar um entregador",
+                "description": "Atualiza os dados de um entregador pelo seu ID",
+                "tags": ["DeliveryRiders"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do entregador a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeliveryRider"
+                            },
+                            "examples": {
+                                "updateDeliveryRider": {
+                                    "value": {
+                                        "name": "Maria Souza",
+                                        "password": "novaSenha123",
+                                        "cpf": "444.555.666-77",
+                                        "license_plate": "MILGRAU"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Entregador atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeliveryRider"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Dados inválidos"
+                    },
+                    "500": {
+                        "description": "Entregador não encontrado"
+                    }
+                }
+            }
+        },
+
+        "/delivery_riders/password/{id}": {
+            "patch": {
+                "summary": "Atualiza a senha do entregador",
+                "description": "Atualiza a senha do entregador pelo o id",
+                "tags": ["DeliveryRiders"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do entregador a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["password"]
+                            },
+                            "examples": {
+                                "updateUsername": {
+                                    "value": {
+                                        "password": "deumasete"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Entregador não encontrado"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/DeliveryRider"
+                                }
+                            }
+                        }
+                    }
+                }
+
             }
         },
 
@@ -978,7 +1302,7 @@
             },
             
             "delete": {
-                "summary": "Deleta um estabeelcimento",
+                "summary": "Deleta um estabelecimento",
                 "description": "Deleta um estabelecimento através do Token",
                 "tags": ["Establishment"],
                 "security": [{"bearerAuth": []}],
@@ -1063,6 +1387,447 @@
                 }
             }
         },
+        
+        "/establishments/address/{id}": {
+            "patch": {
+                "summary": "Atualiza o endereço do estabelecimento",
+                "description": "Atualiza o endereço do estabelecimento através do id",
+                "tags": ["Establishment"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do estabelecimento a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "address": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["address"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "address": "Rua das Flores, 123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Establishment not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Establishment"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/establishments/cep/{id}": {
+            "patch": {
+                "summary": "Atualiza o cep do estabelecimento",
+                "description": "Atualiza o cep do estabelecimento através do id",
+                "tags": ["Establishment"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do estabelecimento a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "cep": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["cep"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "cep": "58475-000"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Establishment not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Establishment"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/establishments/city/{id}": {
+            "patch": {
+                "summary": "Atualiza a cidade do estabelecimento",
+                "description": "Atualiza a cidade do estabelecimento através do id",
+                "tags": ["Establishment"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do estabelecimento a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "city": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["address"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "city": "Campina Grande"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Establishment not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Establishment"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/establishments/email/{id}": {
+            "patch": {
+                "summary": "Atualiza o email do estabelecimento",
+                "description": "Atualiza o email do estabelecimento através do id",
+                "tags": ["Establishment"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do estabelecimento a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["email"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "email": "email@gmail.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Establishment not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Establishment"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/establishments/name/{id}": {
+            "patch": {
+                "summary": "Atualiza o nome do estabelecimento",
+                "description": "Atualiza o nome do estabelecimento através do id",
+                "tags": ["Establishment"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do estabelecimento a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["name"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "name": "Rua das Flores, 123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Establishment not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Establishment"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/establishments/phone/{id}": {
+            "patch": {
+                "summary": "Atualiza o telefone do estabelecimento",
+                "description": "Atualiza o telefone do estabelecimento através do id",
+                "tags": ["Establishment"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do estabelecimento a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "phone": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["phone"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "phone": "(83) 99999-9999"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Establishment not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Establishment"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/establishments/state/{id}": {
+            "patch": {
+                "summary": "Atualiza o estado do estabelecimento",
+                "description": "Atualiza o estado do estabelecimento através do id",
+                "tags": ["Establishment"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do estabelecimento a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "state": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["state"]
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "state": "PB"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Establishment not exists"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Establishment"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
 
         "/admins": {
             "post": {
@@ -1079,7 +1844,8 @@
                                 "admin": {
                                     "value": {
                                         "name": "Carlos",
-                                        "password": "senha123"
+                                        "password": "senha123",
+                                        "cpf": "987.654.321-10"
                                     }
                                 }
                             }
@@ -1101,6 +1867,58 @@
                         }
                     }
                 }
+            },
+
+            "get": {
+                "summary": "Buscar todos os admins",
+                "description": "Busca todos os admins cadastrados",
+                "tags": ["Admins"],
+                "responses": {
+                    "200": {
+                        "description": "Lista de admins",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                         "$ref": "#/components/schemas/Admin"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/admins/{id}": {
+            "delete": {
+                "summary": "Deleta um admin",
+                "description": "Deleta um admin pelo seu id",
+                "tags": ["Admins"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description":"Id do admin para deletar",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
 
@@ -1115,7 +1933,7 @@
                             "examples": {
                                 "auth": {
                                     "value": {
-                                        "id": "999999999",
+                                        "cpf": "999.999.999-99",
                                         "password": "10101010"
                                     }
                                 }
@@ -1174,11 +1992,14 @@
                     "password": {
                         "type": "string"
                     },
+                    "cpf": {
+                        "type": "string"
+                    },
                     "license_plate": {
                         "type": "string"
                     }
                 },
-                "required": ["name", "password", "license_plate"]
+                "required": ["name", "password", "cpf", "license_plate"]
             },
 
             "Product": {
@@ -1266,6 +2087,14 @@
                 }
             },
 
+            "Token": {
+                "properties": {
+                    "token": {
+                        "type": "string"
+                    }
+                }
+            },
+
             "EstablishmentResponse": {
                 "properties": {
                     "id": {
@@ -1303,9 +2132,12 @@
                     },
                     "password": {
                         "type": "string"
+                    },
+                    "cpf": {
+                        "type": "string"
                     }
                 },
-                "required": ["name", "password"]
+                "required": ["name", "password", "cpf"]
             }
         }, 
         "securitySchemes": {

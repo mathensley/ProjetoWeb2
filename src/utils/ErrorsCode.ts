@@ -1,6 +1,6 @@
 const INVALID_TOKEN = "Error code 10";
 const INVALID_TOKEN_EXPIRED = "Error code 11";
-const INVALID_PASSWORD = "Error code 12";   
+const INVALID_PASSWORD = "Invalid password";   
 const INVALID_SECRET_KEY = "Error code 13";
 const INVALID_TOKEN_NOT_AUTHORIZED = "Unauthorized";
 const INVALID_USER_BY_CPF = "User not found by CPF";
@@ -47,7 +47,7 @@ const INVALID_PRODUCT_ALREADY_EXIST = "Product already exists with this ID";
 const errors_product_code = {
     INVALID_UNRECOGNIZED_ERROR,
     INVALID_PRODUCT_ALREADY_EXIST,
-    INVALID_PRODUCT_BY_ID
+    INVALID_PRODUCT_BY_ID,
 }
 
 const errors_establishment_code = {

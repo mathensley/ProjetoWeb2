@@ -1,13 +1,12 @@
-import { Product } from "@prisma/client";
+import { Establishment } from "@prisma/client";
 import { prismaClient } from "../../database/PrismaClient.js";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { errors_establishment_code } from "../../utils/ErrorsCode.js";
 
-export class UpdateDescriptionProductService {
-    public async update(id: string, description: string): Promise<Product> {
-
+export class UpdateNameEstablishmentService {
+    public async update(id: string, name: string): Promise<Establishment> {
         try {
-            const updatedProduct = await prismaClient.product.update({where: {id}, data: {description}});
+            const updatedProduct = await prismaClient.establishment.update({where: {id}, data: {name}});
             return updatedProduct;
         } catch (error) {
             if (error instanceof PrismaClientKnownRequestError && error.code === "P2025") {

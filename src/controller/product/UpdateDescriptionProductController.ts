@@ -10,7 +10,7 @@ export class UpdateDescriptionProductController {
     }
 
     async handle(request: Request, response: Response) {
-        const { id } = request.query;
+        const { id } = request.params;
         const { description } = request.body;
 
         try {
