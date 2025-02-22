@@ -1,7 +1,7 @@
-const INVALID_TOKEN = "Error code 10";
-const INVALID_TOKEN_EXPIRED = "Error code 11";
+const INVALID_TOKEN = "Invalid Token";
+const INVALID_TOKEN_EXPIRED = "Token expired";
 const INVALID_PASSWORD = "Invalid password";   
-const INVALID_SECRET_KEY = "Error code 13";
+const INVALID_SECRET_KEY = "Secret key error";
 const INVALID_TOKEN_NOT_AUTHORIZED = "Unauthorized";
 const INVALID_USER_BY_CPF = "User not found by CPF";
 const INVALID_ROLE_UNAUTHORIZED = "Role unauthorized";

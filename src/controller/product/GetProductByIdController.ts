@@ -13,7 +13,7 @@ export class GetProductByIdController {
         const { id } = request.params
 
         try {
-            const responseProducts: Product[] | null = await this.getProductByIdService.get(String(id));
+            const responseProducts: Product[] = await this.getProductByIdService.get(String(id));
             return response.status(200).json(responseProducts);
 
         } catch(error) {

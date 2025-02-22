@@ -6,11 +6,17 @@ export class DeleteProductService {
 
     async delete(id: string) {
         try {
-            await prismaClient.product.deleteMany({where: {id}});       
-        } catch(error: unknown) {
+            const product = await prismaClient.product.delete({where: {id}});  
+
+            if (!product) {
+                throw new Error(errors_product_code.INVALID_PRODUCT_BY_ID);
+            }    
+        } catch(error: unknown) {            
             if (error instanceof PrismaClientKnownRequestError && error.code == "P2002") {
-                throw new Error(errors_product_code.INVALID_UNRECOGNIZED_ERROR);
-            } 
+                throw new Error(errors_product_code.INVALID_PRODUCT_BY_ID);
+            }
+
+            throw new Error(errors_product_code.INVALID_PRODUCT_BY_ID);
         }
     }
 }

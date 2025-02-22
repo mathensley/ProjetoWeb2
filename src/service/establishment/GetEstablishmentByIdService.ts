@@ -1,23 +1,23 @@
 import { Establishment } from "@prisma/client";
 import { prismaClient } from "../../database/PrismaClient.js";
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
-import { errors_product_code } from "../../utils/ErrorsCode.js";
+import { errors_establishment_code, errors_product_code } from "../../utils/ErrorsCode.js";
 
 export class GetEstablishmentByIdService {
-    public async get(id: string): Promise<Establishment[] | null> {
+    public async get(id: string): Promise<Establishment[]> {
         try {
-            const response = await prismaClient.establishment.findUnique({where: {id}});
+            const establishment = await prismaClient.establishment.findUnique({where: {id}});
     
-            if (response) {
-                return [response];
+            if (!establishment) {
+                throw new Error(errors_establishment_code.INVALID_ESTABLISHMENT_BY_ID);
             }
     
-            return null;
+            return [establishment];
     
         } catch (error: unknown) {
-            if (error instanceof PrismaClientKnownRequestError && error.code === "P2002") {
-                throw new Error(errors_product_code.INVALID_PRODUCT_ALREADY_EXIST);
+            if (error instanceof Error) {
+                throw new Error(error.message);
             }
+
             throw new Error(errors_product_code.INVALID_UNRECOGNIZED_ERROR);
         }
     }

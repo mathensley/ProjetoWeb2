@@ -12,10 +12,10 @@ export class DeleteEstablishmentByIdController {
         const { id } = request.params;
 
         try {
-            this.deleteEstablishmentService.delete(String(id)).then(() => {
-                return response.status(200).json({
-                    message: "Ok"
-                });
+            await this.deleteEstablishmentService.delete(String(id));
+            
+            return response.status(200).json({
+                message: "Ok"
             });
         } catch(error) {
             if (error instanceof Error) {
