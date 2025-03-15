@@ -12,10 +12,10 @@ export class DeleteProducByIdController {
         const { id } = request.params;
 
         try {
-            this.deleteProductService.delete(String(id)).then(() => {
-                return response.status(200).json({
-                    message: "Ok"
-                });
+            await this.deleteProductService.delete(String(id));
+
+            return response.status(200).json({
+                message: "Ok"
             });
         } catch(error) {
             if (error instanceof Error) {

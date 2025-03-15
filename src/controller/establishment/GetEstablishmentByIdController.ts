@@ -13,7 +13,7 @@ export class GetEstablishmentByIdController {
         const { id } = request.params
 
         try {
-            const responseProducts: Establishment[] | null = await this.getEstablishmentByIdService.get(String(id));
+            const responseProducts: Establishment[] = await this.getEstablishmentByIdService.get(String(id));
             return response.status(200).json(responseProducts);
         } catch(error) {
             if (error instanceof Error) {
