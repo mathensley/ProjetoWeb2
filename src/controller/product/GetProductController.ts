@@ -10,12 +10,13 @@ export class GetProductController {
     }
 
     async handle(request: Request, response: Response) {
+        const { page, size } = request.query;
 
         try {
-            const responseProducts: Product[] | null = await this.getProductService.get();    
+            const responseProducts: Product[] | null = await this.getProductService.get(page, size);    
             return response.status(200).json(responseProducts);
-        
         } 
+
         catch(error) {
             if (error instanceof Error) {
                 return response.status(500).json({
