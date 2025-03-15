@@ -15,7 +15,7 @@ export class CreateDeliveryRiderController {
 
             const delivery_rider: DeliveryRider = await this.createDeliveryRiderService.create(data);
 
-            return response.status(200).json(delivery_rider);
+            return response.status(201).json(delivery_rider);
         } catch (error) {
             if (error instanceof Error) {
                 return response.status(500).json({

@@ -14,7 +14,7 @@ export class CreateAdminController {
             const data: Admin = request.body;
 
             const admin: Admin = await this.createAdminService.create(data);
-            return response.status(200).json(admin);
+            return response.status(201).json(admin);
         } catch (error) {
             if (error instanceof Error) {
                 return response.status(500).json({

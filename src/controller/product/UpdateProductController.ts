@@ -15,7 +15,7 @@ export class UpdateProductController {
 
         try {
             const responseProduct: Product = await this.updateProductService.update(String(id), product);
-            return response.status(500).json(responseProduct);
+            return response.status(200).json(responseProduct);
 
         } catch(error: unknown) {
             if (error instanceof Error) {

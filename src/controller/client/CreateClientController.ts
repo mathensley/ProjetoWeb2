@@ -33,7 +33,7 @@ export class CreateClientController {
                 establishmentId
             });
 
-            return response.status(200).json(client);
+            return response.status(201).json(client);
         } catch (error) {
             if (error instanceof Error) {
                 return response.status(500).json({

@@ -13,7 +13,6 @@ export class UpdateProductService {
             if (error instanceof PrismaClientKnownRequestError && error.code === "P2025") {
                 throw new Error(errors_product_code.INVALID_PRODUCT_BY_ID);
             }
-
             throw new Error(errors_product_code.INVALID_UNRECOGNIZED_ERROR);
         }
     }

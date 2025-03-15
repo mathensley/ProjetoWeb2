@@ -14,7 +14,7 @@ export class CreateProductController {
 
         try {
             const productResponse: Product = await this.createProductService.create(data);
-            return response.status(200).json(productResponse);
+            return response.status(201).json(productResponse);
 
         } catch(error) {
             if (error instanceof Error) {

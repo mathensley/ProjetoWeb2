@@ -25,7 +25,7 @@ export class CreateEstablishmentController {
             data.adminId = id
             
             const productResponse: Establishment = await this.createEstablishmentService.create(data);
-            return response.status(200).json(productResponse);
+            return response.status(201).json(productResponse);
 
         } catch(error) {
             if (error instanceof Error) {
