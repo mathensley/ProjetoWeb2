@@ -496,10 +496,30 @@
             },
 
             "get": {
-                "summary": "Buscar todos os produtos",
-                "description": "Busca todos os produtos já cadastrados",
+                "summary": "Busca por todos os produtos",
+                "description": "Busca por todos os produtos já cadastrados",
                 "tags": ["Products"],
                 "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Número da página",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "Limite de produtos por página",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
