@@ -1,6 +1,6 @@
 import { prismaClient } from "../../database/PrismaClient.js";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
-import { errors_establishment_code, errors_product_code } from "../../utils/ErrorsCode.js";
+import { errors_establishment_code } from "../../utils/ErrorsCode.js";
 
 export class DeleteEstablishmentService {
 

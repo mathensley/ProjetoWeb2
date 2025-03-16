@@ -34,3 +34,5 @@ app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`);
     console.log(`Swagger rodando em  http://localhost:${port}/api-docs`);
 });
+
+export default app;
