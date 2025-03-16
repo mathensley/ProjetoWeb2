@@ -224,7 +224,7 @@
                                         "name": "José Alvez",
                                         "password": "deumasete",
                                         "cpf": "111.222.333-44",
-                                        "license_plate": "244GRAU"
+                                        "license_plate": "GRA1U23"
                                     }
                                 }
                             }
@@ -669,7 +669,7 @@
                                         "name": "LaPatisserie - Campina Grande",
                                         "address": "Rua Aprigio Velozo",
                                         "city": "Campina Grande",
-                                        "state": "Paraíba",
+                                        "state": "PB",
                                         "cep": "58840-000",
                                         "email": "email@gmail.com",
                                         "phone": "(83) 999999999"

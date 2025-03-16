@@ -1,11 +1,12 @@
 import { Router } from "express";
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import { AuthService } from "../../service/auth/AuthService.js";
 import { GetProductByIdController } from "../../controller/product/GetProductByIdController.js";
 import { GetProductController } from "../../controller/product/GetProductController.js";
 import { DeleteProducByIdController } from "../../controller/product/DeleteProductByIdController.js";
 import { CreateProductController } from "../../controller/product/CreateProductController.js";
 import { UpdateProductController } from "../../controller/product/UpdateProductController.js";
+import { validateProduct } from "../../main/validation/validateProduct.js";
 
 const productsRouter = Router();
 
@@ -18,7 +19,8 @@ const deleteProducByIdController = new DeleteProducByIdController();
 const updateProductService = new UpdateProductController();
 
 productsRouter.post("/api/products", 
-    authService.verifyToken, 
+    authService.verifyToken,
+    (request: Request, response: Response, next: NextFunction) => {validateProduct(request, response, next)},
     (request: Request, response: Response) => {createProductController.handle(request, response)}
 );
 

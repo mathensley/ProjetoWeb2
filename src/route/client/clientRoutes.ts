@@ -18,9 +18,18 @@ const updateClientController = new UpdateClientController();
 clientRoutes.post("/api/clients",
     (request: Request, response: Response, next: NextFunction) => {validateClient(request, response, next)},
     (request: Request, response: Response) => {createClientController.handle(request, response)});
-clientRoutes.get("/api/clients", (request: Request, response: Response) => {getClientController.handle(request, response)});
-clientRoutes.get("/api/clients/:id", (request: Request, response: Response) => {getClientByIdController.handle(request, response)});
-clientRoutes.delete("/api/clients/:id", (request: Request, response: Response) => {deleteClientController.handle(request, response)});
-clientRoutes.patch("/api/clients/:id", (request: Request, response: Response) => {updateClientController.handle(request, response)});
+
+clientRoutes.get("/api/clients", 
+    (request: Request, response: Response) => {getClientController.handle(request, response)});
+
+clientRoutes.get("/api/clients/:id", 
+    (request: Request, response: Response) => {getClientByIdController.handle(request, response)});
+
+clientRoutes.delete("/api/clients/:id", 
+    (request: Request, response: Response) => {deleteClientController.handle(request, response)});
+
+clientRoutes.patch("/api/clients/:id",
+    (request: Request, response: Response, next: NextFunction) => {validateClient(request, response, next)},
+    (request: Request, response: Response) => {updateClientController.handle(request, response)});
 
 export default clientRoutes;
