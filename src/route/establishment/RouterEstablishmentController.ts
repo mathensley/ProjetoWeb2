@@ -1,10 +1,10 @@
 import { Request, Router, Response, NextFunction } from "express";
-import { AuthService } from "../../service/auth/AuthService.js";
-import { GetEstablishmentByIdController } from "../../controller/establishment/GetEstablishmentByIdController.js";
-import { GetEstablishmentController } from "../../controller/establishment/GetEstablishmentController.js";
-import { DeleteEstablishmentByIdController } from "../../controller/establishment/DeleteEstablishmentByIdController.js";
-import { CreateEstablishmentController } from "../../controller/establishment/CreateEstablishmentController.js";
-import { UpdateEstablishmentController } from "../../controller/establishment/UpdateEstablishmentController.js";
+import { GetEstablishmentByIdController } from "../../controller/establishment/GetEstablishmentByIdController";
+import { GetEstablishmentController } from "../../controller/establishment/GetEstablishmentController";
+import { DeleteEstablishmentByIdController } from "../../controller/establishment/DeleteEstablishmentByIdController";
+import { CreateEstablishmentController } from "../../controller/establishment/CreateEstablishmentController";
+import { UpdateEstablishmentController } from "../../controller/establishment/UpdateEstablishmentController";
+import { AuthService } from "../../service/auth/AuthService";
 
 const establishmentsRouter = Router();
 

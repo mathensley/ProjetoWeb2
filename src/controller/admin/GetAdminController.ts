@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Admin } from "@prisma/client";
-import { GetAdminService } from "../../service/admin/GetAdminService.js";
+import { GetAdminService } from "../../service/admin/GetAdminService";
 
 export class GetAdminController {
     private getAdminService: GetAdminService;

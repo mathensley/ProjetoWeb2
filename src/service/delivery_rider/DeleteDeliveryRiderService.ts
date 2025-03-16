@@ -1,5 +1,5 @@
-import { prismaClient } from "../../database/PrismaClient.js";
-import { errors_user_code } from "../../utils/ErrorsCode.js";
+import { prismaClient } from "../../database/PrismaClient";
+import { errors_user_code } from "../../utils/ErrorsCode";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 export class DeleteDeliveryRiderService {

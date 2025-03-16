@@ -1,7 +1,7 @@
 import { Product } from "@prisma/client";
-import { prismaClient } from "../../database/PrismaClient.js";
+import { prismaClient } from "../../database/PrismaClient";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
-import { errors_product_code } from "../../utils/ErrorsCode.js";
+import { errors_product_code } from "../../utils/ErrorsCode";
 
 export class GetProductByIdService {
 

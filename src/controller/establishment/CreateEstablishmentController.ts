@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { Establishment } from "@prisma/client";
-import { CreateEstablishmentService } from "../../service/establishment/CreateEstablishmentService.js";
-import { BcryptUtil } from "../../utils/BCryptUtils.js";
-import { errors_auth_code } from "../../utils/ErrorsCode.js";
+import { CreateEstablishmentService } from "../../service/establishment/CreateEstablishmentService";
+import { BcryptUtil } from "../../utils/BCryptUtils";
+import { errors_auth_code } from "../../utils/ErrorsCode";
 
 export class CreateEstablishmentController {
     private createEstablishmentService: CreateEstablishmentService; 

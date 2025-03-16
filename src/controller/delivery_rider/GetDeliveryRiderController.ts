@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { DeliveryRider } from "@prisma/client";
-import { GetDeliveryRiderService } from "../../service/delivery_rider/GetDeliveryRiderService.js";
+import { GetDeliveryRiderService } from "../../service/delivery_rider/GetDeliveryRiderService";
 
 export class GetDeliveryRiderController {
     private getDeliveryRiderService: GetDeliveryRiderService;

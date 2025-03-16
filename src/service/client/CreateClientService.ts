@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
-import { BcryptUtil } from "../../utils/BCryptUtils.js";
-import { errors_user_code } from "../../utils/ErrorsCode.js";
+import { BcryptUtil } from "../../utils/BCryptUtils";
+import { errors_user_code } from "../../utils/ErrorsCode";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 export class CreateClientService {

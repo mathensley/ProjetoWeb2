@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { BcryptUtil } from "../../utils/BCryptUtils.js";
+import { BcryptUtil } from "../../utils/BCryptUtils";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 export class UpdateClientService {

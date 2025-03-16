@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { GetClientByIdService } from "../../service/client/GetClientByIdService.js";
+import { GetClientByIdService } from "../../service/client/GetClientByIdService";
 
 export class GetClientByIdController {
     async handle(request: Request, response: Response) {

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { DeleteDeliveryRiderService } from "../../service/delivery_rider/DeleteDeliveryRiderService.js";
+import { DeleteDeliveryRiderService } from "../../service/delivery_rider/DeleteDeliveryRiderService";
 
 export class DeleteDeliveryRiderController {
     private deleteDeliveryRiderService: DeleteDeliveryRiderService;

@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { Request, Response } from "express";
-import { CreateAdminController } from '../../controller/admin/CreateAdminController.js';
-import { GetAdminController } from '../../controller/admin/GetAdminController.js';
-import { DeleteAdminController } from '../../controller/admin/DeleteAdminController.js';
+import { CreateAdminController } from '../../controller/admin/CreateAdminController';
+import { GetAdminController } from '../../controller/admin/GetAdminController';
+import { DeleteAdminController } from '../../controller/admin/DeleteAdminController';
 
 const adminRoutes = Router();
 

@@ -1,5 +1,5 @@
 import { Product } from "@prisma/client";
-import { prismaClient } from "../../database/PrismaClient.js";
+import { prismaClient } from "../../database/PrismaClient";
 
 export class GetProductService {
     public async get(page: any = 1, size: any = 10): Promise<Product[]> {

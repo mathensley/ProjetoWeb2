@@ -1,12 +1,12 @@
 import { NextFunction, Router } from "express";
 import { Request, Response } from "express";
-import { CreateDeliveryRiderController } from "../../controller/delivery_rider/CreateDeliveryRiderController.js";
-import { GetDeliveryRiderController } from "../../controller/delivery_rider/GetDeliveryRiderController.js";
-import { GetDeliveryRiderByIdController } from "../../controller/delivery_rider/GetDeliveryRiderByIdController.js";
-import { DeleteDeliveryRiderController } from "../../controller/delivery_rider/DeleteDeliveryRiderController.js";
-import { UpdateDeliveryRiderController } from "../../controller/delivery_rider/UpdateDeliveryRiderController.js";
-import { UpdatePasswordDeliveryRiderController } from "../../controller/delivery_rider/UpdatePasswordDeliveryRiderController.js";
-import { AuthService } from "../../service/auth/AuthService.js";
+import { CreateDeliveryRiderController } from "../../controller/delivery_rider/CreateDeliveryRiderController";
+import { GetDeliveryRiderController } from "../../controller/delivery_rider/GetDeliveryRiderController";
+import { GetDeliveryRiderByIdController } from "../../controller/delivery_rider/GetDeliveryRiderByIdController";
+import { DeleteDeliveryRiderController } from "../../controller/delivery_rider/DeleteDeliveryRiderController";
+import { UpdateDeliveryRiderController } from "../../controller/delivery_rider/UpdateDeliveryRiderController";
+import { UpdatePasswordDeliveryRiderController } from "../../controller/delivery_rider/UpdatePasswordDeliveryRiderController";
+import { AuthService } from "../../service/auth/AuthService";
 
 const deliveryRoutes = Router();
 

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { DeliveryRider } from "@prisma/client";
-import { CreateDeliveryRiderService } from "../../service/delivery_rider/CreateDeliveryRiderService.js";
+import { CreateDeliveryRiderService } from "../../service/delivery_rider/CreateDeliveryRiderService";
 
 export class CreateDeliveryRiderController {
     private createDeliveryRiderService: CreateDeliveryRiderService;

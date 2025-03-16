@@ -1,10 +1,10 @@
 import { NextFunction, Router, Request, Response } from "express";
-import { AuthService } from "../../service/auth/AuthService.js";
-import { GetProductByIdController } from "../../controller/product/GetProductByIdController.js";
-import { GetProductController } from "../../controller/product/GetProductController.js";
-import { DeleteProducByIdController } from "../../controller/product/DeleteProductByIdController.js";
-import { CreateProductController } from "../../controller/product/CreateProductController.js";
-import { UpdateProductController } from "../../controller/product/UpdateProductController.js";
+import { GetProductByIdController } from "../../controller/product/GetProductByIdController";
+import { GetProductController } from "../../controller/product/GetProductController";
+import { DeleteProducByIdController } from "../../controller/product/DeleteProductByIdController";
+import { CreateProductController } from "../../controller/product/CreateProductController";
+import { UpdateProductController } from "../../controller/product/UpdateProductController";
+import { AuthService } from "../../service/auth/AuthService";
 
 const productsRouter = Router();
 
