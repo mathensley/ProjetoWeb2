@@ -25,6 +25,7 @@
                 "summary": "Cadastro de cliente",
                 "description": "Essa rota será responsável por cadastrar os clientes",
                 "tags": ["Clients"],
+                "security": [{"bearerAuth": []}],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -71,6 +72,7 @@
                 "summary": "Buscar todos os clientes",
                 "description": "Busca todos os clientes cadastrados",
                 "tags": ["Clients"],
+                "security": [{"bearerAuth": []}],
                 "responses": {
                     "200": {
                         "description": "Lista de clientes",
@@ -94,6 +96,7 @@
                 "summary": "Buscar um cliente pelo id",
                 "description": "Busca um cliente pelo seu id",
                 "tags": ["Clients"],
+                "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
                         "name": "id",
@@ -121,6 +124,7 @@
                 "summary": "Deleta um cliente",
                 "description": "Deleta um cliente pelo seu id",
                 "tags": ["Clients"],
+                "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
                         "name": "id",
@@ -150,6 +154,7 @@
                 "summary": "Atualizar um cliente",
                 "description": "Atualiza os dados de um cliente pelo seu ID",
                 "tags": ["Clients"],
+                "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
                         "name": "id",
@@ -212,6 +217,7 @@
                 "summary": "Cadastro de Entregador",
                 "description": "Essa rota será responsável por cadastrar os entregadores",
                 "tags": ["DeliveryRiders"],
+                "security": [{"bearerAuth": []}],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -252,6 +258,7 @@
                 "summary": "Buscar todos os entregadores",
                 "description": "Busca todos os entregadores cadastrados",
                 "tags": ["DeliveryRiders"],
+                "security": [{"bearerAuth": []}],
                 "responses": {
                     "200": {
                         "description": "Lista de entregadores",
@@ -275,6 +282,7 @@
                 "summary": "Buscar um entregador pelo id",
                 "description": "Busca um entregador pelo seu id",
                 "tags": ["DeliveryRiders"],
+                "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
                         "name": "id",
@@ -302,6 +310,7 @@
                 "summary": "Deleta um entregador",
                 "description": "Deleta um entregador pelo seu id",
                 "tags": ["DeliveryRiders"],
+                "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
                         "name": "id",
@@ -331,6 +340,7 @@
                 "summary": "Atualizar um entregador",
                 "description": "Atualiza os dados de um entregador pelo seu ID",
                 "tags": ["DeliveryRiders"],
+                "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
                         "name": "id",
@@ -388,6 +398,7 @@
                 "summary": "Atualiza a senha do entregador",
                 "description": "Atualiza a senha do entregador pelo o id",
                 "tags": ["DeliveryRiders"],
+                "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
                         "name": "id",
@@ -842,6 +853,7 @@
                 "summary": "Cadastro de Admin",
                 "description": "Essa rota será responsável por cadastrar os admins",
                 "tags": ["Admins"],
+                "security": [{"bearerAuth": []}],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -881,6 +893,7 @@
                 "summary": "Buscar todos os admins",
                 "description": "Busca todos os admins cadastrados",
                 "tags": ["Admins"],
+                "security": [{"bearerAuth": []}],
                 "responses": {
                     "200": {
                         "description": "Lista de admins",
@@ -904,6 +917,7 @@
                 "summary": "Deleta um admin",
                 "description": "Deleta um admin pelo seu id",
                 "tags": ["Admins"],
+                "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
                         "name": "id",
@@ -935,6 +949,7 @@
                 "summary": "Obtém um Token para o usuário",
                 "description": "Essa rota irá ser responsável dar o Token de acesso ao usuário",
                 "tags": ["Auth"],
+                "security": [{"bearerAuth": []}],
                 "requestBody": {
                     "content": {
                         "application/json": {

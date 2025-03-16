@@ -1,4 +1,4 @@
-import { Admin } from "@prisma/client";
+import { Admin, Client } from "@prisma/client";
 import { NextFunction, Request, Response } from "express";
 import { BcryptUtil } from "../../utils/BCryptUtils.js";
 import { errors_auth_code } from "../../utils/ErrorsCode.js";
@@ -43,6 +43,7 @@ export class AuthService {
 
     async verifyToken(request: Request, response: Response, next: NextFunction) {
         const tokenHeader = request.headers["authorization"];
+        console.log(request.headers)
         const token = tokenHeader && tokenHeader.split(" ")[1];
 
         try {
@@ -78,7 +79,7 @@ export class AuthService {
         }
     } 
 
-    async authorizeRole(request: Request, response: Response, next: NextFunction) {
+    async authorizeRoleAdmin(request: Request, response: Response, next: NextFunction) {
         const tokenHeader = request.headers["authorization"];
         const token = tokenHeader && tokenHeader.split(" ")[1];
 
@@ -91,7 +92,71 @@ export class AuthService {
                     next();
                 } else {
                     response.status(500).json({
-                        message: errors_auth_code.INVALID_USER_BY_ID
+                        message: errors_auth_code.INVALID_ROLE_UNAUTHORIZED
+                    });
+                }
+
+            } 
+            catch(error: unknown) {
+                if (error instanceof Error) {
+                    response.status(500).json({
+                        message: error.message
+                    })
+                }
+            }
+        } else {
+            response.status(401).json({
+                message: errors_auth_code.INVALID_TOKEN
+            });
+        }
+    } 
+
+    async authorizeRoleDeliveryRider(request: Request, response: Response, next: NextFunction) {
+        const tokenHeader = request.headers["authorization"];
+        const token = tokenHeader && tokenHeader.split(" ")[1];
+
+        if (token) {
+            try {
+                const id = await BcryptUtil.getId(token);
+                const deliveryRider: Admin | null = await prismaClient.deliveryRider.findUnique({where: {id}});
+
+                if (deliveryRider) {
+                    next();
+                } else {
+                    response.status(500).json({
+                        message: errors_auth_code.INVALID_ROLE_UNAUTHORIZED
+                    });
+                }
+
+            } 
+            catch(error: unknown) {
+                if (error instanceof Error) {
+                    response.status(500).json({
+                        message: error.message
+                    })
+                }
+            }
+        } else {
+            response.status(401).json({
+                message: errors_auth_code.INVALID_TOKEN
+            });
+        }
+    } 
+
+    async authorizeRoleClient(request: Request, response: Response, next: NextFunction) {
+        const tokenHeader = request.headers["authorization"];
+        const token = tokenHeader && tokenHeader.split(" ")[1];
+
+        if (token) {
+            try {
+                const id = await BcryptUtil.getId(token);
+                const client: Client | null = await prismaClient.client.findUnique({where: {id}});
+
+                if (client) {
+                    next();
+                } else {
+                    response.status(500).json({
+                        message: errors_auth_code.INVALID_ROLE_UNAUTHORIZED
                     });
                 }
 
