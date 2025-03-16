@@ -1,7 +1,7 @@
 import express, {Express, Request, Response } from "express";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
-import swaggerJson from "./swagger.json" assert { type: "json"};
+import swaggerJson from "./swagger.json" with { type: "json"};
 
 import clientRoutes from "./route/client/clientRoutes.js";
 import deliveryRoutes from "./route/delivery_rider/deliveryRoutes.js"
