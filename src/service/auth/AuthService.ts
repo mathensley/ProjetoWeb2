@@ -1,4 +1,4 @@
-import { Admin, Client } from "@prisma/client";
+import { Admin, Client, DeliveryRider } from "@prisma/client";
 import { NextFunction, Request, Response } from "express";
 import { BcryptUtil } from "../../utils/BCryptUtils.js";
 import { errors_auth_code } from "../../utils/ErrorsCode.js";
@@ -9,27 +9,32 @@ import jwt from "jsonwebtoken";
 const SECRET = process.env.SECRET
 
 export class AuthService {
-
     async login(cpf: string, password: string) {
         if (!SECRET) {
             throw new Error(errors_auth_code.INVALID_SECRET_KEY);
         } 
 
         try {
-            const adminRecovery: Admin | null = await prismaClient.admin.findUnique({where: {cpf}});
+            let recovery: Admin | Client | DeliveryRider| null = await prismaClient.admin.findUnique({where: {cpf}});
             
-            if (!adminRecovery) {
-                throw new Error("Not a valid admin");
+            if (!recovery) {
+                recovery = await prismaClient.client.findUnique({where: {cpf}});
+
+                if (!recovery) {
+                    recovery = await prismaClient.deliveryRider.findUnique({where: {cpf}});
+
+                    if (!recovery) {
+                        throw new Error(errors_auth_code.INVALID_USER);
+                    }
+                } 
             }
 
-            const validationPassword = await BcryptUtil.comparePassword(password, adminRecovery.password);
-
+            const validationPassword = await BcryptUtil.comparePassword(password, recovery.password);
             if (!validationPassword) {
                 throw Error(errors_auth_code.INVALID_PASSWORD);
             }
 
-            const token = jwt.sign({id: adminRecovery.id}, SECRET);
-
+            const token = jwt.sign({id: recovery.id}, SECRET);
             return token;
 
         } catch(error) {
