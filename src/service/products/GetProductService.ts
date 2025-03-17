@@ -1,7 +1,13 @@
-import { Product } from "@prisma/client";
+import { PrismaClient, Product } from "@prisma/client";
 import { prismaClient } from "../../database/PrismaClient";
 
 export class GetProductService {
+    private prismaClient: PrismaClient;
+    
+    constructor(prismaClient?: PrismaClient) {
+        this.prismaClient = prismaClient || new PrismaClient();
+    }
+
     public async get(page: any = 1, size: any = 10): Promise<Product[]> {
         try {
             let pageTransformer = Number(page);
@@ -13,11 +19,11 @@ export class GetProductService {
 
             const skip: number = (pageTransformer - 1) * sizeTransformer;
 
-            return await prismaClient.product.findMany({
+            return await this.prismaClient.product.findMany({
                 skip: skip,
                 take: sizeTransformer
             });
-        } catch(error: unknown) {
+        } catch(error: any) {
             if (error instanceof Error) {
                 throw new Error(error.message);
             }

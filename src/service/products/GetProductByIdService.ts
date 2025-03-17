@@ -1,13 +1,18 @@
-import { Product } from "@prisma/client";
+import { PrismaClient, Product } from "@prisma/client";
 import { prismaClient } from "../../database/PrismaClient";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { errors_product_code } from "../../utils/ErrorsCode";
 
 export class GetProductByIdService {
+    private prismaClient: PrismaClient;
+
+    constructor(prismaClient?: PrismaClient) {
+        this.prismaClient = prismaClient || new PrismaClient();
+    }
 
     public async get(id: string): Promise<Product[]> {
         try {
-            const product = await prismaClient.product.findUnique({where: {id}});
+            const product = await this.prismaClient.product.findUnique({where: {id}});
 
             if (!product) {
                 throw new Error(errors_product_code.INVALID_PRODUCT_BY_ID);
