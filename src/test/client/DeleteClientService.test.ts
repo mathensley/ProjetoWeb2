@@ -1,8 +1,8 @@
 import { PrismaClient } from '@prisma/client';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
-import { BcryptUtil } from '../utils/BCryptUtils';
-import { CreateClientService } from '../service/client/CreateClientService';
-import { DeleteClientService } from '../service/client/DeleteClientService';
+import { BcryptUtil } from '../../utils/BCryptUtils';
+import { CreateClientService } from '../../service/client/CreateClientService';
+import { DeleteClientService } from '../../service/client/DeleteClientService';
 
 jest.mock('@prisma/client', () => {
     return {
@@ -20,7 +20,7 @@ jest.mock('@prisma/client', () => {
     };
 });
 
-jest.mock('../utils/BCryptUtils', () => {
+jest.mock('../../utils/BCryptUtils', () => {
     return {
         BcryptUtil: {
             hashPassword: jest.fn(),

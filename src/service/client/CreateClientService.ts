@@ -48,7 +48,7 @@ export class CreateClientService {
             if (error.code === "P2002") {
                 throw new Error(errors_user_code.INVALID_USER_BY_ID);
             } else if (error.message === "Invalid CPF") {
-                throw error
+                throw error;
             }
             throw new Error(errors_user_code.INVALID_UNRECOGNIZED_ERROR)
         }
