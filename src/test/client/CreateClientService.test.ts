@@ -89,7 +89,7 @@ describe('CreateClientService', () => {
     });
 
     it('deve criar um cliente com nome no limite máximo de caracteres', async () => {
-        const longName = 'A'.repeat(255); // Supondo que o limite seja 255 caracteres
+        const longName = 'A'.repeat(255);
         const clientData = {
             name: longName,
             username: 'long_name_client',
@@ -189,40 +189,3 @@ describe('CreateClientService', () => {
         await expect(createClientService.create(clientData as any)).resolves.toBeUndefined
     });
 });
-
-// describe('DeleteClientService', () => {
-//     let deleteClientService: DeleteClientService;
-//     let prismaMock: PrismaClient;
-
-//     beforeEach(() => {
-//         prismaMock = new PrismaClient();
-//         deleteClientService = new DeleteClientService(prismaMock);
-//     });
-
-//     it('deve deletar um cliente com sucesso', async () => {
-//         const deletedClient = { id: 'uuid-123', name: 'Cliente Teste' };
-//         prismaMock.client.delete = jest.fn().mockResolvedValue(deletedClient);
-
-//         const result = await deleteClientService.delete('uuid-123');
-
-//         expect(prismaMock.client.delete).toHaveBeenCalledWith({ where: { id: 'uuid-123' } });
-//         expect(result).toEqual(deletedClient);
-//     });
-
-//     it('deve lançar erro se o cliente não for encontrado', async () => {
-//         const error = new PrismaClientKnownRequestError('Cliente não encontrado.', {
-//             code: 'P2025',
-//             clientVersion: '',
-//         });
-//         prismaMock.client.delete = jest.fn().mockRejectedValue(error);
-
-//         await expect(deleteClientService.delete('uuid-999')).rejects.toThrow("Cliente não encontrado.");
-//     });
-
-//     it('deve lançar erro genérico para outros problemas', async () => {
-//         const error = new Error('Erro no banco de dados');
-//         prismaMock.client.delete = jest.fn().mockRejectedValue(error);
-
-//         await expect(deleteClientService.delete('uuid-123')).rejects.toThrow('Erro no banco de dados');
-//     });
-// });
