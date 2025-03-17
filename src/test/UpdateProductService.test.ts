@@ -54,12 +54,16 @@ describe("UpdateProductService", () => {
   });
 
   it("Deve falhar ao tentar definir um nome inválido (nulo ou menos de 3 caracteres)", async () => {
-    const product_ = {id: mockProduct.id, name: ""}
-    prismaClient.product.update = jest.fn().mockResolvedValue(product_);
-    
-    await expect(updateProductService.update(mockProduct.id, { name: "" })).rejects.toThrow(
+    const product_name = { name: ""};
+
+    prismaClient.product.update = jest.fn().mockImplementation(() => {
+      throw new Error(errors_product_code.INVALID_PRODUCT_NAME);
+    });
+        
+    await expect(updateProductService.update(mockProduct.id, product_name)).rejects.toThrow(
       errors_product_code.INVALID_PRODUCT_NAME
     );
+    
   });
 
   it("Deve falhar ao tentar definir um preço inválido (menor ou igual a zero)", async () => {
@@ -195,6 +199,34 @@ describe("UpdateProductService", () => {
     expect(updateProductService["prismaClient"].product.update).toHaveBeenCalledWith({
       where: { id: mockProduct.id },
       data: { price: new Decimal("300") },
+    });
+  });
+
+  it("Teste de Valor Limite: Deve atualizar o preço do produto próximo ao limite inferior com sucesso", async () => {
+    const updatedProduct = { ...mockProduct, price: new Decimal("0.001") };
+  
+    updateProductService["prismaClient"].product.update = jest.fn().mockResolvedValue(updatedProduct);
+  
+    const result = await updateProductService.update(mockProduct.id, { price: new Decimal("0.001") });
+  
+    expect(result.price.toString()).toBe("0.001");
+    expect(updateProductService["prismaClient"].product.update).toHaveBeenCalledWith({
+      where: { id: mockProduct.id },
+      data: { price: new Decimal("0.001") },
+    });
+  });
+
+  it("Teste de Valor Limite: Deve atualizar o preço do produto igual a 1 com sucesso", async () => {
+    const updatedProduct = { ...mockProduct, price: new Decimal("1") };
+  
+    updateProductService["prismaClient"].product.update = jest.fn().mockResolvedValue(updatedProduct);
+  
+    const result = await updateProductService.update(mockProduct.id, { price: new Decimal("1") });
+  
+    expect(result.price.toString()).toBe("1");
+    expect(updateProductService["prismaClient"].product.update).toHaveBeenCalledWith({
+      where: { id: mockProduct.id },
+      data: { price: new Decimal("1") },
     });
   });
 })

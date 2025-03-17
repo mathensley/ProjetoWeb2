@@ -10,13 +10,18 @@ export class UpdateProductService {
     }
     
     async update(id: string, product: Partial<Product>): Promise<Product> {
+        
         try {
             if (product.price && product.price <= new Decimal(`${0}`)) {
                 throw new Error(errors_product_code.INVALID_PRODUCT_PRICE);
             }
-            if (product.name && product.name.length <= 3) {
+            if ((product.name && product.name.length <= 3)) {
                 throw new Error(errors_product_code.INVALID_PRODUCT_NAME);
             }
+            if (product.name == "") {
+                throw new Error(errors_product_code.INVALID_PRODUCT_NAME);
+            }
+            
             const response = await this.prismaClient.product.update({where: {id}, data: product});
             return response;
         } catch(error: any) {
