@@ -17,7 +17,7 @@ export class DeleteClientService {
             }
         } catch (error) {
             if (error instanceof PrismaClientKnownRequestError && error.code == "P2025") {
-                throw new Error("Client not found.");
+                throw new Error("Client not found");
             }
             throw new Error(errors_user_code.INVALID_UNRECOGNIZED_ERROR)
         }
