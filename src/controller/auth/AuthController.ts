@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { AuthService } from "../../service/auth/AuthService.js";
-import { errors_auth_code } from "../../utils/ErrorsCode.js";
+import { AuthService } from "../../service/auth/AuthService";
+import { errors_auth_code } from "../../utils/ErrorsCode";
 
 export class AuthController {
     private authService: AuthService;

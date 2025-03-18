@@ -1,6 +1,6 @@
 import { Product } from "@prisma/client";
 import { Request, Response } from "express";
-import { UpdateProductService } from "../../service/products/UpdateProductService.js";
+import { UpdateProductService } from "../../service/products/UpdateProductService";
 
 export class UpdateProductController {
     private updateProductService: UpdateProductService;

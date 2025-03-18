@@ -1,6 +1,6 @@
 import { DeliveryRider } from "@prisma/client";
-import { prismaClient } from "../../database/PrismaClient.js";
-import { BcryptUtil } from "../../utils/BCryptUtils.js";
+import { prismaClient } from "../../database/PrismaClient";
+import { BcryptUtil } from "../../utils/BCryptUtils";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 export class UpdateDeliveryRiderService {

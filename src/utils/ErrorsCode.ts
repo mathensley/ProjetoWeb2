@@ -45,11 +45,15 @@ const errors_user_code = {
 }  
 
 const INVALID_PRODUCT_ALREADY_EXIST = "Product already exists with this ID";
+const INVALID_PRODUCT_PRICE = "Product price must be greater than zero";
+const INVALID_PRODUCT_NAME = "Product invalid name";
 
 const errors_product_code = {
     INVALID_UNRECOGNIZED_ERROR,
     INVALID_PRODUCT_ALREADY_EXIST,
     INVALID_PRODUCT_BY_ID,
+    INVALID_PRODUCT_PRICE,
+    INVALID_PRODUCT_NAME
 }
 
 const errors_establishment_code = {

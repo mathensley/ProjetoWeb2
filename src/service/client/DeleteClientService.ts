@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { errors_user_code } from "../../utils/ErrorsCode.js";
+import { errors_user_code } from "../../utils/ErrorsCode";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 export class DeleteClientService {
@@ -17,7 +17,7 @@ export class DeleteClientService {
             }
         } catch (error) {
             if (error instanceof PrismaClientKnownRequestError && error.code == "P2025") {
-                throw new Error("Client not found.");
+                throw new Error("Client not found");
             }
             throw new Error(errors_user_code.INVALID_UNRECOGNIZED_ERROR)
         }

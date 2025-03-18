@@ -12,7 +12,7 @@ export class GetClientByIdService {
         try {
             const client = await this.prismaClient.client.findUnique({where: {id}});
             if (!client) {
-                throw new Error("Client not found.");
+                throw new Error("Client not found");
             }
             return client;
         } catch (error) {

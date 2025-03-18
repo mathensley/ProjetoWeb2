@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { DeleteEstablishmentService } from "../../service/establishment/DeleteEstablishmentService.js";
+import { DeleteEstablishmentService } from "../../service/establishment/DeleteEstablishmentService";
 
 export class DeleteEstablishmentByIdController {
     private deleteEstablishmentService: DeleteEstablishmentService; 

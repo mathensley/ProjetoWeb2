@@ -1,10 +1,10 @@
 import { NextFunction, Router, Request, Response } from "express";
-import { CreateClientController } from '../../controller/client/CreateClientController.js';
-import { GetClientController } from "../../controller/client/GetClientController.js";
-import { GetClientByIdController } from "../../controller/client/GetClientByIdController.js";
-import { DeleteClientController } from "../../controller/client/DeleteClientController.js";
-import { UpdateClientController } from "../../controller/client/UpdateClientController.js";
-import { AuthService } from "../../service/auth/AuthService.js";
+import { CreateClientController } from '../../controller/client/CreateClientController';
+import { GetClientController } from "../../controller/client/GetClientController";
+import { GetClientByIdController } from "../../controller/client/GetClientByIdController";
+import { DeleteClientController } from "../../controller/client/DeleteClientController";
+import { UpdateClientController } from "../../controller/client/UpdateClientController";
+import { AuthService } from "../../service/auth/AuthService";
 
 const clientRoutes = Router();
 

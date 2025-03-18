@@ -1,6 +1,6 @@
 import { Establishment } from "@prisma/client";
-import { prismaClient } from "../../database/PrismaClient.js";
-import { errors_establishment_code, errors_product_code } from "../../utils/ErrorsCode.js";
+import { prismaClient } from "../../database/PrismaClient";
+import { errors_establishment_code, errors_product_code } from "../../utils/ErrorsCode";
 
 export class GetEstablishmentByIdService {
     public async get(id: string): Promise<Establishment[]> {

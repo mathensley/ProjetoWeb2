@@ -1,15 +1,14 @@
 import express, {Express, Request, Response } from "express";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
-import swaggerJson from "./swagger.json" assert { type: "json"};
+import swaggerJson from "./swagger.json"
 
-import clientRoutes from "./route/client/clientRoutes.js";
-import deliveryRoutes from "./route/delivery_rider/deliveryRoutes.js"
-import productsRouter from "./route/product/RouterProductController.js";
-import authRouter from "./route/auth/RouterAuthController.js";
-import termsRouter from "./route/terms/RouterTerms.js";
-import establishmentsRouter from "./route/establishment/RouterEstablishmentController.js";
-import adminRoutes from "./route/admin/adminRoutes.js";
+import clientRoutes from "./route/client/clientRoutes";
+import deliveryRoutes from "./route/delivery_rider/deliveryRoutes"
+import productsRouter from "./route/product/RouterProductController";
+import authRouter from "./route/auth/RouterAuthController";
+import establishmentsRouter from "./route/establishment/RouterEstablishmentController";
+import adminRoutes from "./route/admin/adminRoutes";
 
 const app: Express  = express();
 const port: Number  = 3000;
@@ -21,8 +20,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerJson))
 app.use(clientRoutes);
 app.use(deliveryRoutes);
 app.use(productsRouter);
-app.use(authRouter)
-app.use(termsRouter)
+app.use(authRouter);
 app.use(establishmentsRouter);
 app.use(adminRoutes);
 
@@ -34,3 +32,5 @@ app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`);
     console.log(`Swagger rodando em  http://localhost:${port}/api-docs`);
 });
+
+export default app;

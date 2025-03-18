@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Establishment } from "@prisma/client";
-import { GetEstablishmentService } from "../../service/establishment/GetEstablishmentService.js";
+import { GetEstablishmentService } from "../../service/establishment/GetEstablishmentService";
 
 export class GetEstablishmentController {
     private getEstablishmentService: GetEstablishmentService;

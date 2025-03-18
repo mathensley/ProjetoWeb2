@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { UpdatePasswordDeliveryRiderService } from "../../service/delivery_rider/UpdatePasswordDeliveryRiderService.js";
+import { UpdatePasswordDeliveryRiderService } from "../../service/delivery_rider/UpdatePasswordDeliveryRiderService";
 
 export class UpdatePasswordDeliveryRiderController {
     private updatePasswordDeliveryRiderService: UpdatePasswordDeliveryRiderService;

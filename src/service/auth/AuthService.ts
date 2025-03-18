@@ -1,9 +1,9 @@
 import { Admin, Client, DeliveryRider } from "@prisma/client";
 import { NextFunction, Request, Response } from "express";
-import { BcryptUtil } from "../../utils/BCryptUtils.js";
-import { errors_auth_code } from "../../utils/ErrorsCode.js";
+import { BcryptUtil } from "../../utils/BCryptUtils";
+import { errors_auth_code } from "../../utils/ErrorsCode";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
-import { prismaClient } from "../../database/PrismaClient.js";
+import { prismaClient } from "../../database/PrismaClient";
 import jwt from "jsonwebtoken";
 
 const SECRET = process.env.SECRET
