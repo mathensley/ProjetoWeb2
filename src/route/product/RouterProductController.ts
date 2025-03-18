@@ -4,6 +4,7 @@ import { GetProductController } from "../../controller/product/GetProductControl
 import { DeleteProducByIdController } from "../../controller/product/DeleteProductByIdController";
 import { CreateProductController } from "../../controller/product/CreateProductController";
 import { UpdateProductController } from "../../controller/product/UpdateProductController";
+import { validateProduct } from "../../main/validation/validateProduct.js";
 import { AuthService } from "../../service/auth/AuthService";
 
 const productsRouter = Router();
@@ -15,9 +16,10 @@ const getProductController = new GetProductController();
 const deleteProducByIdController = new DeleteProducByIdController();
 const updateProductService = new UpdateProductController();
 
-productsRouter.post("/api/products", 
-    authService.verifyToken, 
+productsRouter.post("/api/products",
+    authService.verifyToken,
     (request: Request, response: Response, next: NextFunction) => authService.authorizeRoleAdmin(request, response, next),
+    (request: Request, response: Response, next: NextFunction) => {validateProduct(request, response, next)},
     (request: Request, response: Response) => {createProductController.handle(request, response)}
 );
 

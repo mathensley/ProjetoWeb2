@@ -4,6 +4,7 @@ import { GetEstablishmentController } from "../../controller/establishment/GetEs
 import { DeleteEstablishmentByIdController } from "../../controller/establishment/DeleteEstablishmentByIdController";
 import { CreateEstablishmentController } from "../../controller/establishment/CreateEstablishmentController";
 import { UpdateEstablishmentController } from "../../controller/establishment/UpdateEstablishmentController";
+import { validateEstablishment } from "../../main/validation/validateEstablishment.js";
 import { AuthService } from "../../service/auth/AuthService";
 
 const establishmentsRouter = Router();
@@ -16,8 +17,9 @@ const updateEstablishmentController = new UpdateEstablishmentController();
 const getEstablishmentByIdController = new GetEstablishmentByIdController();
 
 establishmentsRouter.post("/api/establishments", 
-    authService.verifyToken, 
+    authService.verifyToken,
     (request: Request, response: Response, next: NextFunction) => authService.authorizeRoleAdmin(request, response, next),
+    (request: Request, response: Response, next: NextFunction) => {validateEstablishment(request, response, next)},
     (request: Request, response: Response) => {createEstablishmentController.handle(request, response)}
 );
 

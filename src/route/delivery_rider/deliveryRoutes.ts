@@ -6,6 +6,7 @@ import { GetDeliveryRiderByIdController } from "../../controller/delivery_rider/
 import { DeleteDeliveryRiderController } from "../../controller/delivery_rider/DeleteDeliveryRiderController";
 import { UpdateDeliveryRiderController } from "../../controller/delivery_rider/UpdateDeliveryRiderController";
 import { UpdatePasswordDeliveryRiderController } from "../../controller/delivery_rider/UpdatePasswordDeliveryRiderController";
+import { validateDeliveryRider } from "../../main/validation/validateDeliveryRider.js";
 import { AuthService } from "../../service/auth/AuthService";
 
 const deliveryRoutes = Router();
@@ -21,6 +22,7 @@ const updatePasswordDeliveryRiderController = new UpdatePasswordDeliveryRiderCon
 deliveryRoutes.post("/api/delivery_riders", 
     authService.verifyToken,
     (request: Request, response: Response, next: NextFunction) => authService.authorizeRoleAdmin(request, response, next),
+    (request: Request, response: Response, next: NextFunction) => {validateDeliveryRider(request, response, next)},
     (request: Request, response: Response) => {createDeliveryRiderController.handle(request, response)}
 );
 deliveryRoutes.get("/api/delivery_riders", 

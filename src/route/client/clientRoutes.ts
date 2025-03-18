@@ -4,6 +4,7 @@ import { GetClientController } from "../../controller/client/GetClientController
 import { GetClientByIdController } from "../../controller/client/GetClientByIdController";
 import { DeleteClientController } from "../../controller/client/DeleteClientController";
 import { UpdateClientController } from "../../controller/client/UpdateClientController";
+import validateClient from "../../main/validation/validateClient.js";
 import { AuthService } from "../../service/auth/AuthService";
 
 const clientRoutes = Router();
@@ -16,6 +17,7 @@ const deleteClientController = new DeleteClientController();
 const updateClientController = new UpdateClientController();
 
 clientRoutes.post("/api/clients", 
+    (request: Request, response: Response, next: NextFunction) => {validateClient(request, response, next)},
     (request: Request, response: Response) => {createClientController.handle(request, response)}
 );
 clientRoutes.get("/api/clients", 
