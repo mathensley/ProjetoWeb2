@@ -1,6 +1,5 @@
-import { prismaClient } from "../../database/PrismaClient";
-import { DeleteDeliveryRiderService } from "../../service/delivery_rider/DeleteDeliveryRiderService";
-import { errors_user_code } from "../../utils/ErrorsCode";
+import { prismaClient } from "../../main/database/PrismaClient";
+import { DeleteDeliveryRiderService } from "../../main/service/delivery_rider/DeleteDeliveryRiderService";
 
 jest.mock("@prisma/client", () => {
     return {

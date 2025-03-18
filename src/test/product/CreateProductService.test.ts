@@ -1,8 +1,8 @@
 import { Product } from "@prisma/client";
-import { CreateProductService } from "../service/products/CreateProductService";
+import { CreateProductService } from "../../main/service/products/CreateProductService";
 import { Decimal } from "@prisma/client/runtime/library";
-import { prismaClient } from "../database/PrismaClient";
-import { errors_product_code } from "../utils/ErrorsCode";
+import { prismaClient } from "../../main/database/PrismaClient";
+import { errors_product_code } from "../../main/utils/ErrorsCode";
 
 jest.mock("@prisma/client", () => {
   return {

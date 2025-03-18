@@ -4,7 +4,7 @@ import { GetClientController } from "../../controller/client/GetClientController
 import { GetClientByIdController } from "../../controller/client/GetClientByIdController";
 import { DeleteClientController } from "../../controller/client/DeleteClientController";
 import { UpdateClientController } from "../../controller/client/UpdateClientController";
-import validateClient from "../../main/validation/validateClient.js";
+import validateClient from "../../../main/validation/validateClient.js";
 import { AuthService } from "../../service/auth/AuthService";
 
 const clientRoutes = Router();

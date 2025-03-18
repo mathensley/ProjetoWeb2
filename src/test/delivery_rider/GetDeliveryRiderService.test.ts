@@ -1,6 +1,6 @@
-import { prismaClient } from "../../database/PrismaClient";
-import { GetDeliveryRiderService } from "../../service/delivery_rider/GetDeliveryRiderService";
-import { GetDeliveryRiderByIdService } from "../../service/delivery_rider/GetDeliveryRiderByIdService";
+import { prismaClient } from "../../main/database/PrismaClient";
+import { GetDeliveryRiderService } from "../../main/service/delivery_rider/GetDeliveryRiderService";
+import { GetDeliveryRiderByIdService } from "../../main/service/delivery_rider/GetDeliveryRiderByIdService";
 
 jest.mock("@prisma/client", () => {
     return {

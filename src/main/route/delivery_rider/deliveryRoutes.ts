@@ -6,7 +6,7 @@ import { GetDeliveryRiderByIdController } from "../../controller/delivery_rider/
 import { DeleteDeliveryRiderController } from "../../controller/delivery_rider/DeleteDeliveryRiderController";
 import { UpdateDeliveryRiderController } from "../../controller/delivery_rider/UpdateDeliveryRiderController";
 import { UpdatePasswordDeliveryRiderController } from "../../controller/delivery_rider/UpdatePasswordDeliveryRiderController";
-import { validateDeliveryRider } from "../../main/validation/validateDeliveryRider.js";
+import { validateDeliveryRider } from "../../../main/validation/validateDeliveryRider.js";
 import { AuthService } from "../../service/auth/AuthService";
 
 const deliveryRoutes = Router();

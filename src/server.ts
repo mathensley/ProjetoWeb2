@@ -3,12 +3,12 @@ import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import swaggerJson from "./swagger.json"
 
-import clientRoutes from "./route/client/clientRoutes";
-import deliveryRoutes from "./route/delivery_rider/deliveryRoutes"
-import productsRouter from "./route/product/RouterProductController";
-import authRouter from "./route/auth/RouterAuthController";
-import establishmentsRouter from "./route/establishment/RouterEstablishmentController";
-import adminRoutes from "./route/admin/adminRoutes";
+import clientRoutes from "./main/route/client/clientRoutes";
+import deliveryRoutes from "./main/route/delivery_rider/deliveryRoutes"
+import productsRouter from "./main/route/product/RouterProductController";
+import authRouter from "./main/route/auth/RouterAuthController";
+import establishmentsRouter from "./main/route/establishment/RouterEstablishmentController";
+import adminRoutes from "./main/route/admin/adminRoutes";
 
 const app: Express  = express();
 const port: Number  = 3000;

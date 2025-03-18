@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Establishment, Product } from "@prisma/client";
+import { Establishment } from "@prisma/client";
 import { GetEstablishmentByIdService } from "../../service/establishment/GetEstablishmentByIdService";
 
 export class GetEstablishmentByIdController {

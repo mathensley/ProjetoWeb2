@@ -1,6 +1,6 @@
-import { DeleteProductService } from "../service/products/DeleteProductService";
-import { prismaClient } from "../database/PrismaClient";
-import { errors_product_code } from "../utils/ErrorsCode";
+import { DeleteProductService } from "../../main/service/products/DeleteProductService";
+import { prismaClient } from "../../main/database/PrismaClient";
+import { errors_product_code } from "../../main/utils/ErrorsCode";
 
 jest.mock("@prisma/client", () => {
   return {

@@ -1,8 +1,8 @@
 import { DeliveryRider } from "@prisma/client";
-import { prismaClient } from "../../database/PrismaClient";
-import { CreateDeliveryRiderService } from "../../service/delivery_rider/CreateDeliveryRiderService";
-import { BcryptUtil } from "../../utils/BCryptUtils";
-import { errors_user_code } from "../../utils/ErrorsCode";
+import { prismaClient } from "../../main/database/PrismaClient";
+import { CreateDeliveryRiderService } from "../../main/service/delivery_rider/CreateDeliveryRiderService";
+import { BcryptUtil } from "../../main/utils/BCryptUtils";
+import { errors_user_code } from "../../main/utils/ErrorsCode";
 
 jest.mock("@prisma/client", () => {
     return {
@@ -16,7 +16,7 @@ jest.mock("@prisma/client", () => {
     };
 });
 
-jest.mock("../../utils/BCryptUtils", () => {
+jest.mock("../../main/utils/BCryptUtils", () => {
     return {
         BcryptUtil: {
             hashPassword: jest.fn(),

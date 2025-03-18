@@ -1,5 +1,4 @@
 import { PrismaClient, Product } from "@prisma/client";
-import { prismaClient } from "../../database/PrismaClient";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { errors_product_code } from "../../utils/ErrorsCode";
 

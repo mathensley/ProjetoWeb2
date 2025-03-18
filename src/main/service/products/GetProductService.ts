@@ -1,5 +1,4 @@
 import { PrismaClient, Product } from "@prisma/client";
-import { prismaClient } from "../../database/PrismaClient";
 
 export class GetProductService {
     private prismaClient: PrismaClient;

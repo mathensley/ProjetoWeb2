@@ -1,5 +1,5 @@
 import { PrismaClient, Product } from "@prisma/client";
-import { Decimal, PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
+import { Decimal } from "@prisma/client/runtime/library";
 import { errors_product_code } from "../../utils/ErrorsCode";
 
 export class UpdateProductService {

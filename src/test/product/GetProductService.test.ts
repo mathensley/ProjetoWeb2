@@ -1,5 +1,5 @@
-import { GetProductService } from "../service/products/GetProductService";
-import { prismaClient } from "../database/PrismaClient";
+import { GetProductService } from "../../main/service/products/GetProductService";
+import { prismaClient } from "../../main/database/PrismaClient";
 
 jest.mock("@prisma/client", () => {
   return {

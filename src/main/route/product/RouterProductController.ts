@@ -4,7 +4,7 @@ import { GetProductController } from "../../controller/product/GetProductControl
 import { DeleteProducByIdController } from "../../controller/product/DeleteProductByIdController";
 import { CreateProductController } from "../../controller/product/CreateProductController";
 import { UpdateProductController } from "../../controller/product/UpdateProductController";
-import { validateProduct } from "../../main/validation/validateProduct.js";
+import { validateProduct } from "../../../main/validation/validateProduct.js";
 import { AuthService } from "../../service/auth/AuthService";
 
 const productsRouter = Router();

@@ -4,7 +4,7 @@ import { GetEstablishmentController } from "../../controller/establishment/GetEs
 import { DeleteEstablishmentByIdController } from "../../controller/establishment/DeleteEstablishmentByIdController";
 import { CreateEstablishmentController } from "../../controller/establishment/CreateEstablishmentController";
 import { UpdateEstablishmentController } from "../../controller/establishment/UpdateEstablishmentController";
-import { validateEstablishment } from "../../main/validation/validateEstablishment.js";
+import { validateEstablishment } from "../../../main/validation/validateEstablishment.js";
 import { AuthService } from "../../service/auth/AuthService";
 
 const establishmentsRouter = Router();
