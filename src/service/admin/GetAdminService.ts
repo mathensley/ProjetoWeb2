@@ -1,5 +1,5 @@
 import { Admin } from "@prisma/client";
-import { prismaClient } from "../../database/PrismaClient.js";
+import { prismaClient } from "../../database/PrismaClient";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 export class GetAdminService {

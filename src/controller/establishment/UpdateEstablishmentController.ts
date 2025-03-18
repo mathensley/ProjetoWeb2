@@ -1,7 +1,6 @@
 import { Establishment } from "@prisma/client";
 import { Request, Response } from "express";
-import { UpdateEstablishmentService } from "../../service/establishment/UpdateEstablishmentService.js";
-import { errors_establishment_code } from "../../utils/ErrorsCode.js";
+import { UpdateEstablishmentService } from "../../service/establishment/UpdateEstablishmentService";
 
 export class UpdateEstablishmentController {
     private updateEstablishmentService: UpdateEstablishmentService;

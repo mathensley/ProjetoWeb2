@@ -8,6 +8,7 @@ const INVALID_ROLE_UNAUTHORIZED = "Role unauthorized";
 const INVALID_CPF_OR_PASSWORD = "Invalid CPF or password";
 const INVALID_UNRECOGNIZED_ERROR = "Unknown error ocurred";
 const INVALID_UNKNOWN = "Unrecognized error. Contact the support!";
+const INVALID_USER = "Invalid User"
 
 
 const INVALID_USER_BY_ID = "User already exists with this ID";
@@ -25,7 +26,8 @@ const errors_auth_code = {
     INVALID_ROLE_UNAUTHORIZED,
     INVALID_CPF_OR_PASSWORD,
     INVALID_UNRECOGNIZED_ERROR,
-    INVALID_UNKNOWN
+    INVALID_UNKNOWN,
+    INVALID_USER
 }
 
 const INVALID_PRODUCT_BY_ID = "Product not found by ID";
@@ -43,11 +45,15 @@ const errors_user_code = {
 }  
 
 const INVALID_PRODUCT_ALREADY_EXIST = "Product already exists with this ID";
+const INVALID_PRODUCT_PRICE = "Product price must be greater than zero";
+const INVALID_PRODUCT_NAME = "Product invalid name";
 
 const errors_product_code = {
     INVALID_UNRECOGNIZED_ERROR,
     INVALID_PRODUCT_ALREADY_EXIST,
     INVALID_PRODUCT_BY_ID,
+    INVALID_PRODUCT_PRICE,
+    INVALID_PRODUCT_NAME
 }
 
 const errors_establishment_code = {

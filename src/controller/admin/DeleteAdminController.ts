@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { DeleteAdminService } from "../../service/admin/DeleteAdminService.js";
+import { DeleteAdminService } from "../../service/admin/DeleteAdminService";
 
 export class DeleteAdminController {
     private deleteAdminService: DeleteAdminService;

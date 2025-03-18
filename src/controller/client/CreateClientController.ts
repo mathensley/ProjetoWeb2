@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateClientService } from "../../service/client/CreateClientService.js";
+import { CreateClientService } from "../../service/client/CreateClientService";
 
 export class CreateClientController {
     async handle(request: Request, response: Response) {

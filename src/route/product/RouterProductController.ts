@@ -1,25 +1,24 @@
-import { Router } from "express";
-import { Request, Response, NextFunction } from "express";
-import { AuthService } from "../../service/auth/AuthService.js";
-import { GetProductByIdController } from "../../controller/product/GetProductByIdController.js";
-import { GetProductController } from "../../controller/product/GetProductController.js";
-import { DeleteProducByIdController } from "../../controller/product/DeleteProductByIdController.js";
-import { CreateProductController } from "../../controller/product/CreateProductController.js";
-import { UpdateProductController } from "../../controller/product/UpdateProductController.js";
+import { NextFunction, Router, Request, Response } from "express";
+import { GetProductByIdController } from "../../controller/product/GetProductByIdController";
+import { GetProductController } from "../../controller/product/GetProductController";
+import { DeleteProducByIdController } from "../../controller/product/DeleteProductByIdController";
+import { CreateProductController } from "../../controller/product/CreateProductController";
+import { UpdateProductController } from "../../controller/product/UpdateProductController";
 import { validateProduct } from "../../main/validation/validateProduct.js";
+import { AuthService } from "../../service/auth/AuthService";
 
 const productsRouter = Router();
 
 const authService = new AuthService();
-
 const createProductController = new CreateProductController();
 const getProductByIdController = new GetProductByIdController();
 const getProductController = new GetProductController();
 const deleteProducByIdController = new DeleteProducByIdController();
 const updateProductService = new UpdateProductController();
 
-productsRouter.post("/api/products", 
+productsRouter.post("/api/products",
     authService.verifyToken,
+    (request: Request, response: Response, next: NextFunction) => authService.authorizeRoleAdmin(request, response, next),
     (request: Request, response: Response, next: NextFunction) => {validateProduct(request, response, next)},
     (request: Request, response: Response) => {createProductController.handle(request, response)}
 );
@@ -34,11 +33,13 @@ productsRouter.get("/api/products",
 
 productsRouter.patch("/api/products/:id", 
     authService.verifyToken, 
+    (request: Request, response: Response, next: NextFunction) => authService.authorizeRoleAdmin(request, response, next),
     (request: Request, response: Response) => {updateProductService.handle(request, response)}
 );
 
 productsRouter.delete("/api/products/:id", 
     authService.verifyToken, 
+    (request: Request, response: Response, next: NextFunction) => authService.authorizeRoleAdmin(request, response, next),
     (request: Request, response: Response) => {deleteProducByIdController.handle(request, response)}
 );
 

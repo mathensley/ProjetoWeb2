@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Product } from "@prisma/client";
-import { CreateProductService } from "../../service/products/CreateProductService.js";
+import { CreateProductService } from "../../service/products/CreateProductService";
 
 export class CreateProductController {
     private createProductService: CreateProductService;  

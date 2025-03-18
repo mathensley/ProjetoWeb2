@@ -1,8 +1,8 @@
 import { DeliveryRider } from "@prisma/client";
-import { prismaClient } from "../../database/PrismaClient.js";
+import { prismaClient } from "../../database/PrismaClient";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
-import { BcryptUtil } from "../../utils/BCryptUtils.js";
-import { errors_user_code } from "../../utils/ErrorsCode.js";
+import { BcryptUtil } from "../../utils/BCryptUtils";
+import { errors_user_code } from "../../utils/ErrorsCode";
 
 export class UpdatePasswordDeliveryRiderService {
     async update(id: string, password: string): Promise<DeliveryRider> {

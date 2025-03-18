@@ -4,8 +4,10 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
-    "dev": "tsx --watch --no-warnings src/server.js"
+    "dev": "tsx --watch --no-warnings src/server.ts",
+    "build": "tsc -p .",
+    "test": "jest",
+    "coverage": "nyc --reporter=html --reporter=text npm test"
   },
   "keywords": [],
   "author": "LeviJunior21 <levi.pereira.junior@ccc.ufcg.edu.br> Matheus Hensley <>",
@@ -22,13 +24,26 @@
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
+    "@types/chai": "^5.2.0",
+    "@types/chai-http": "^4.2.4",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
-    "@types/node": "^22.10.10",
+    "@types/jest": "^29.5.14",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.13.10",
+    "@types/supertest": "^6.0.2",
+    "chai": "^5.2.0",
+    "chai-http": "^5.1.1",
     "express": "^4.21.2",
+    "jest": "^29.7.0",
+    "mocha": "^11.1.0",
+    "nyc": "^17.1.0",
     "prisma": "^6.2.1",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.6",
+    "ts-node": "^10.9.2",
     "tsx": "^4.19.2",
-    "typescript": "^5.7.3"
+    "typescript": "^5.8.2"
   },
   "repository": "https://github.com/mathensley/ProjetoWeb2"
 }

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { DeliveryRider } from "@prisma/client";
-import { UpdateDeliveryRiderService } from "../../service/delivery_rider/UpdateDeliveryRiderService.js";
+import { UpdateDeliveryRiderService } from "../../service/delivery_rider/UpdateDeliveryRiderService";
 
 export class UpdateDeliveryRiderController {
     private updateDeliveryRiderService: UpdateDeliveryRiderService;

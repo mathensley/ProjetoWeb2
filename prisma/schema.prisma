@@ -17,7 +17,7 @@ model Admin {
   id              String          @id @default(uuid())
   name            String
   password        String
-  cpf             String          @unique
+  cpf             String          @unique @db.Char(11)
 
   establishment   Establishment?
 }
@@ -27,12 +27,12 @@ model Client {
   name            String
   username        String
   password        String
-  cpf             String          @unique
+  cpf             String          @unique @db.Char(11)
   email           String
   phone           String
   address         String
   city            String
-  state           String
+  state           String          @db.Char(2)
   cep             String
   created_at      DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
@@ -46,9 +46,10 @@ model DeliveryRider {
   name            String
   password        String
   license_plate   String          @unique
+  cpf             String          @unique @db.Char(11)
   created_at      DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
-  cpf             String          @unique
+
   establishment   Establishment?  @relation(fields: [establishmentId], references: [id])
   establishmentId String?
 }
