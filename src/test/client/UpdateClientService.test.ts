@@ -7,11 +7,8 @@ jest.mock('@prisma/client', () => {
         PrismaClient: jest.fn().mockImplementation(() => {
             return {
                 client: {
-                    create: jest.fn(),
-                      delete: jest.fn(),
-                      findUnique: jest.fn(),
-                      findMany: jest.fn(),
-                      update: jest.fn(),
+                    findUnique: jest.fn(),
+                    update: jest.fn(),
                 },
             };
         }),
