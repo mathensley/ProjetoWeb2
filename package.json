@@ -2,7 +2,6 @@
   "name": "lapatisserie",
   "version": "1.0.0",
   "main": "server.js",
-  "type": "module",
   "scripts": {
     "dev": "tsx --watch --no-warnings src/server.ts",
     "build": "tsc -p .",
@@ -10,7 +9,7 @@
     "coverage": "nyc --reporter=html --reporter=text npm test"
   },
   "keywords": [],
-  "author": "LeviJunior21 <levi.pereira.junior@ccc.ufcg.edu.br> Matheus Hensley <>",
+  "author": "LeviJunior21 <levi.pereira.junior@ccc.ufcg.edu.br> Matheus Hensley <matheus.figueiredo.silva@ccc>",
   "license": "ISC",
   "description": "",
   "dependencies": {
@@ -21,6 +20,7 @@
     "bcrypt": "^5.1.1",
     "cors": "2.8.5",
     "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.2",
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
@@ -30,6 +30,7 @@
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
     "@types/mocha": "^10.0.10",
+    "@types/multer": "^1.4.12",
     "@types/node": "^22.13.10",
     "@types/supertest": "^6.0.2",
     "chai": "^5.2.0",

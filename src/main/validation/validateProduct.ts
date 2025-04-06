@@ -1,40 +1,46 @@
 import { Request, Response, NextFunction } from "express";
-import { Product } from "@prisma/client";
 
 const ALLOWED_CATEGORIES = ["DOCE", "BOLO", "BEBIDA"];
 
-const validateProduct = (req: Request, res: Response, next: NextFunction): void => {
-    const data: Partial<Product> = req.body;
+const validateProduct = (req: Request, res: Response, next: NextFunction): void | Response => {
     const errors: string[] = [];
 
-    if (!data.name || typeof data.name !== "string" || data.name.trim().length < 3) {
+    const name = req.body.name?.trim();
+    const description = req.body.description?.trim();
+    const category = req.body.category;
+    const price = parseFloat(req.body.price);
+    const promotion = req.body.promotion === "true" || req.body.promotion === true;
+
+    if (!name || name.length < 3) {
         errors.push("O nome do produto é obrigatório e deve ter pelo menos 3 caracteres.");
     }
 
-    if (data.description && typeof data.description !== "string") {
+    if (description && typeof description !== "string") {
         errors.push("A descrição deve ser um texto.");
     }
 
-    if (data.image && typeof data.image !== "string") {
-        errors.push("A URL da imagem deve ser um texto.");
+    if (!category || !["DOCE", "BOLO", "BEBIDA"].includes(category)) {
+        errors.push("A categoria deve ser uma das seguintes opções: DOCE, BOLO, BEBIDA.");
     }
 
-    if (!data.category || !ALLOWED_CATEGORIES.includes(data.category)) {
-        errors.push(`A categoria deve ser uma das seguintes opções: ${ALLOWED_CATEGORIES.join(", ")}.`);
-    }
-
-    if (!data.price || isNaN(Number(data.price)) || Number(data.price) <= 0) {
+    if (isNaN(price) || price <= 0) {
         errors.push("O preço é obrigatório e deve ser maior que zero.");
     }
 
-    if (typeof data.promotion !== "boolean") {
+    if (!req.file) {
+        errors.push("A imagem do produto é obrigatória.");
+    }
+
+    if (req.body.promotion !== undefined && typeof promotion !== "boolean") {
         errors.push("A promoção deve ser um valor booleano (true ou false).");
     }
 
     if (errors.length > 0) {
-        res.status(400).json({ errors });
-        return;
+        return res.status(400).json({ errors });
     }
+
+    req.body.price = price;
+    req.body.promotion = promotion;
 
     next();
 };

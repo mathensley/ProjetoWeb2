@@ -1,7 +1,8 @@
 import express, {Express, Request, Response } from "express";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
-import swaggerJson from "./swagger.json"
+import swaggerJson from "./swagger.json";
+import path from "path";
 
 import clientRoutes from "./main/route/client/clientRoutes";
 import deliveryRoutes from "./main/route/delivery_rider/deliveryRoutes"
@@ -23,6 +24,8 @@ app.use(productsRouter);
 app.use(authRouter);
 app.use(establishmentsRouter);
 app.use(adminRoutes);
+
+app.use("/images/products", express.static(path.join(__dirname, "./main/utils/image/product_imgs")))
 
 app.get("/v1", (request: Request, response: Response) => {
     response.send("Hello World!");
