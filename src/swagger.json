@@ -38,13 +38,13 @@
                                         "name": "João Silva",
                                         "username": "joaosilva",
                                         "password": "senha123",
-                                        "cpf": "123.456.789-00",
+                                        "cpf": "12345678900",
                                         "email": "joao@email.com",
                                         "phone": "999999999",
                                         "address": "Rua das Flores, 123",
                                         "city": "São Paulo",
                                         "state": "SP",
-                                        "cep": "01010-000"
+                                        "cep": "01010000"
                                     }
                                 }
                             }
@@ -207,6 +207,126 @@
                     },
                     "500": {
                         "description": "Cliente não encontrado"
+                    }
+                }
+            }
+        },
+
+        "/cart/add": {
+            "post": {
+                "summary": "Adicionar item ao carrinho",
+                "description": "Rota responsável por adicionar novos itens ao carrinho do cliente",
+                "tags": ["Cart"],
+                "security": [{"bearerAuth": []}],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Cart"
+                            },
+                            "examples": {
+                                "cart": {
+                                    "value": {
+                                        "clientId": "UUID",
+                                        "productId": "UUID",
+                                        "quantity": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Item adicionado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Cart"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/cart/item/{id}": {
+            "delete": {
+                "summary": "Deleta um item do carrinho",
+                "description": "Deleta um item do carrinho do cliente pelo o id",
+                "tags": ["Cart"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description":"Id do item para deletar",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Item"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Atualiza a quantidade do item no carrinho",
+                "description": "Rota responsável por atualizar a quantidade de um item do carrinho do cliente",
+                "tags": ["Cart"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do item a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Cart"
+                            },
+                            "examples": {
+                                "updateCartItem": {
+                                    "value": {
+                                        "quantity": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Item atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Item"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Dados inválidos"
                     }
                 }
             }
@@ -459,31 +579,40 @@
         "/products": {
             "post": {
                 "summary": "Cadastro de produto",
-                "description": "Essa rota irá ser responsável por cadastrar os produtos",
+                "description": "Rota responsável por cadastrar os produtos",
                 "tags": ["Products"],
                 "security": [{"bearerAuth": []}],
                 "requestBody": {
+                    "required": true,
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/Product"
-                            },
-                            "examples": {
-                                "product": {
-                                    "value": {
-                                        "name": "Bolo de chocolate",
-                                        "description": "Bolo de chocolate médio",
-                                        "image": "image",
-                                        "category": "BOLO",
-                                        "price": 200.00,
-                                        "promotion": false
+                                "type": "object",
+                                "properties": {
+                                    "name": { "type": "string" },
+                                    "description": { "type": "string" },
+                                    "category": {
+                                        "type": "string",
+                                        "enum": ["BOLO", "DOCE", "BEBIDA"]
+                                    },
+                                    "price": { "type": "number", "format": "float" },
+                                    "promotion": { "type": "boolean" },
+                                    "establishmentId": { "type": "string" },
+                                    "image": {
+                                        "type": "string",
+                                        "format": "binary"
                                     }
+                                },
+                                "required": ["name", "category", "price"]
+                            },
+                            "encoding": {
+                                "image": {
+                                    "contentType": "image/png, image/jpeg"
                                 }
                             }
                         }
                     }
                 },
-
                 "responses": {
                     "401": {
                         "description": "Unauthorized"
@@ -503,7 +632,6 @@
                         }
                     }
                 }
-
             },
 
             "get": {
@@ -529,6 +657,36 @@
                         "schema": {
                             "type": "integer"
                         }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "$ref": "#/components/schemas/ProductResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/products/category/{category}": {
+            "get": {
+                "summary": "Fitlrar produtos pela sua categoria",
+                "description": "Busca os produtos pela categoria",
+                "tags": ["Products"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "path",
+                        "description": "Nome da categoria do produto para a busca",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -956,8 +1114,8 @@
                             "examples": {
                                 "auth": {
                                     "value": {
-                                        "cpf": "999.999.999-99",
-                                        "password": "10101010"
+                                        "cpf": "99999999999",
+                                        "password": "senha123"
                                     }
                                 }
                             }
@@ -1004,6 +1162,82 @@
                     }
                 },
                 "required": ["name", "email", "phone", "address"]
+            },
+
+            "Cart": {
+                "type": "object",
+                "properties": {
+                    "clientId": {
+                        "type": "string"
+                    },
+                    "productId": {
+                        "type": "string"
+                    },
+                    "quantity": {
+                        "type": "number"
+                    }
+                },
+                "required": ["cliendId", "productId", "quantity"]
+            },
+
+            "Item": {
+                "type": "object",
+                "properties": {
+                    "item": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                            "type": "string",
+                            "example": "item123"
+                            },
+                            "quantity": {
+                            "type": "integer",
+                            "example": 3
+                            },
+                            "product": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                    "type": "string",
+                                    "example": "prod001"
+                                    },
+                                    "name": {
+                                    "type": "string",
+                                    "example": "Camiseta"
+                                    },
+                                    "price": {
+                                    "type": "number",
+                                    "format": "float",
+                                    "example": 50.0
+                                    },
+                                    "image": {
+                                    "type": "string",
+                                    "example": "camiseta.jpg"
+                                    }
+                                }
+                            },
+                            "totalItem": {
+                                "type": "number",
+                                "format": "float",
+                                "example": 150.0
+                            }
+                        }
+                    },
+                    "cart": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "example": "cart123"
+                            },
+                            "totalCart": {
+                                "type": "number",
+                                "format": "float",
+                                "example": 220.0
+                            }
+                        }
+                    }
+                }
             },
 
             "DeliveryRider": {

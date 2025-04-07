@@ -27,22 +27,46 @@ export class CreateClientService {
                 throw new Error("Invalid CPF")
             }
             const hashedPass = await BcryptUtil.hashPassword(data.password)
-            const client = await this.prismaClient.client.create({
-                data: {
-                    name: data.name,
-                    username: data.username,
-                    password: hashedPass,
-                    cpf: data.cpf,
-                    email: data.email,
-                    phone: data.phone,
-                    address: data.address,
-                    city: data.city,
-                    state: data.state,
-                    cep: data.cep,
-                    establishmentId: data.establishmentId || null
-                }
+            // const client = await this.prismaClient.client.create({
+            //     data: {
+            //         name: data.name,
+            //         username: data.username,
+            //         password: hashedPass,
+            //         cpf: data.cpf,
+            //         email: data.email,
+            //         phone: data.phone,
+            //         address: data.address,
+            //         city: data.city,
+            //         state: data.state,
+            //         cep: data.cep,
+            //         establishmentId: data.establishmentId || null
+            //     }
+            // });
+            const result = await this.prismaClient.$transaction(async (tx) => {
+                const client = await tx.client.create({
+                    data: {
+                        name: data.name,
+                        username: data.username,
+                        password: hashedPass,
+                        cpf: data.cpf,
+                        email: data.email,
+                        phone: data.phone,
+                        address: data.address,
+                        city: data.city,
+                        state: data.state,
+                        cep: data.cep,
+                        establishmentId: data.establishmentId || null
+                    }
+                });
+                await tx.cart.create({
+                    data: {
+                        clientId: client.id
+                    }
+                });
+                return client;
             });
-            return client;
+
+            return result;
         } catch (error: any) {
             if (error.code === "P2002") {
                 throw new Error(errors_user_code.INVALID_USER_BY_ID);

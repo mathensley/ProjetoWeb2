@@ -1,32 +1,32 @@
 import { Request, Response } from "express";
 import { Product } from "@prisma/client";
-import { GetProductService } from "../../service/products/GetProductService";
+import { GetProductByCategoryService } from "../../service/products/GetProductByCategoryService";
 
-export class GetProductController {
-    private getProductService: GetProductService;
+export class GetProductByCategoryController {
+    private getProductByCategoryService: GetProductByCategoryService;
 
     constructor() {
-        this.getProductService = new GetProductService();
+        this.getProductByCategoryService = new GetProductByCategoryService();
     }
 
     async handle(request: Request, response: Response) {
-        const { page, size } = request.query;
-    
+        const { category } = request.params
+
         try {
-            const responseProducts: Product[] | null = await this.getProductService.get(page, size);
-    
+            const responseProducts: Product[] = await this.getProductByCategoryService.get(String(category));
+
             const baseUrl = `${request.protocol}://${request.get("host")}`;
     
             const productsWithImageUrl = responseProducts?.map(product => ({
                 ...product,
                 imageUrl: product.image ? `${baseUrl}/images/products/${product.image}` : null
             }));
-    
+
             return response.status(200).json(productsWithImageUrl);
-        } catch (error) {
+        } catch(error) {
             if (error instanceof Error) {
                 return response.status(500).json({
-                    error: "An expected error occurred.",
+                    error: "An expected error ocurred.", 
                     info: error.message,
                     stackTrace: error.stack
                 });

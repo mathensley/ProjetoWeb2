@@ -9,23 +9,27 @@ export class CreateProductService {
         this.prismaClient = prismaClient || new PrismaClient();
     }
 
-    public async create(data: Product): Promise<Product> {
+    public async create(data: any): Promise<Product> {
         try {
-            if (data.price <= new Decimal(`${0}`)) {
+            if (!data.price || new Decimal(data.price).lte(0)) {
                 throw new Error(errors_product_code.INVALID_PRODUCT_PRICE);
             }
-            if (data.name == null || data.name.length <= 3) {
+    
+            if (!data.name || data.name.length <= 3) {
                 throw new Error(errors_product_code.INVALID_PRODUCT_NAME);
             }
-            return await this.prismaClient.product.create({data});
+    
+            return await this.prismaClient.product.create({ data });
         } catch (error: any) {
             if (error.code === "P2002") {
                 throw new Error(errors_product_code.INVALID_PRODUCT_ALREADY_EXIST);
-            } else if (error.message == errors_product_code.INVALID_PRODUCT_PRICE) {
-                throw error;
-            } else if (error.message == errors_product_code.INVALID_PRODUCT_NAME) {
+            } else if (
+                error.message == errors_product_code.INVALID_PRODUCT_PRICE ||
+                error.message == errors_product_code.INVALID_PRODUCT_NAME
+            ) {
                 throw error;
             }
+    
             throw new Error(errors_product_code.INVALID_UNRECOGNIZED_ERROR);
         }
     }
