@@ -7,6 +7,7 @@ import path from "path";
 import clientRoutes from "./main/route/client/clientRoutes";
 import deliveryRoutes from "./main/route/delivery_rider/deliveryRoutes"
 import productsRouter from "./main/route/product/RouterProductController";
+import cartRoutes from "./main/route/cart/cartRoutes";
 import authRouter from "./main/route/auth/RouterAuthController";
 import establishmentsRouter from "./main/route/establishment/RouterEstablishmentController";
 import adminRoutes from "./main/route/admin/adminRoutes";
@@ -21,6 +22,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerJson))
 app.use(clientRoutes);
 app.use(deliveryRoutes);
 app.use(productsRouter);
+app.use(cartRoutes);
 app.use(authRouter);
 app.use(establishmentsRouter);
 app.use(adminRoutes);

@@ -39,6 +39,8 @@ model Client {
 
   establishment   Establishment?  @relation(fields: [establishmentId], references: [id])
   establishmentId String?
+
+  cart            Cart?
 }
 
 model DeliveryRider {
@@ -67,6 +69,8 @@ model Product {
 
   establishment   Establishment?  @relation(fields: [establishmentId], references: [id])
   establishmentId String?
+
+  cartItems       CartItem[]
 }
 
 model Establishment {
@@ -84,6 +88,26 @@ model Establishment {
   clients         Client[]
   deliveryRiders  DeliveryRider[]
   products        Product[]
+}
+
+model Cart {
+  id              String         @id @default(uuid())
+  client          Client         @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  clientId        String         @unique
+  items           CartItem[]
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+}
+
+model CartItem {
+  id              String   @id @default(uuid())
+  cart            Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  cartId          String
+  product         Product  @relation(fields: [productId], references: [id])
+  productId       String
+  quantity        Int      @default(1)
+
+  @@unique([cartId, productId])
 }
 
 model User {
