@@ -4,7 +4,7 @@ import { GetClientByIdService } from "../../service/client/GetClientByIdService"
 export class GetClientByIdController {
     async handle(request: Request, response: Response) {
         try {
-            const { id } = request.params;
+            const id = request.clientId;
 
             const getClientByIdService = new GetClientByIdService();
             const client = await getClientByIdService.get(String(id));

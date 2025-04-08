@@ -158,6 +158,7 @@ export class AuthService {
                 const client: Client | null = await prismaClient.client.findUnique({where: {id}});
 
                 if (client) {
+                    request.clientId = id;
                     next();
                 } else {
                     response.status(500).json({
@@ -178,5 +179,5 @@ export class AuthService {
                 message: errors_auth_code.INVALID_TOKEN
             });
         }
-    } 
+    }
 }

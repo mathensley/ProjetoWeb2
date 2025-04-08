@@ -59,6 +59,7 @@ export class GetClientByIdService {
                 id: client.id,
                 name: client.name,
                 username: client.username,
+                cpf: client.cpf,
                 email: client.email,
                 phone: client.phone,
                 address: client.address,

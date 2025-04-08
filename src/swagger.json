@@ -91,20 +91,12 @@
             }
         },
 
-        "/clients/{id}": {
+        "/clients/profile" : {
             "get": {
-                "summary": "Buscar um cliente pelo id",
-                "description": "Busca um cliente pelo seu id",
+                "summary": "Buscar os dados do cliente que está logado",
+                "description": "Busca um cliente pelo seu token",
                 "tags": ["Clients"],
                 "security": [{"bearerAuth": []}],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Id do cliente para a busca",
-                        "required": true
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -118,8 +110,10 @@
                         }
                     }
                 }
-            },
+            }
+        },
 
+        "/clients/{id}": {
             "delete": {
                 "summary": "Deleta um cliente",
                 "description": "Deleta um cliente pelo seu id",

@@ -25,7 +25,12 @@ clientRoutes.get("/api/clients",
     (request: Request, response: Response, next: NextFunction) => authService.authorizeRoleAdmin(request, response, next),
     (request: Request, response: Response) => {getClientController.handle(request, response)}
 );
-clientRoutes.get("/api/clients/:id", 
+// clientRoutes.get("/api/clients/profile",
+//     authService.verifyToken,
+//     (request: Request, response: Response, next: NextFunction) => authService.authorizeRoleClient(request, response, next),
+//     (request: Request, response: Response) => {getClientByIdController.handle(request, response)}
+// );
+clientRoutes.get("/api/clients/profile", 
     authService.verifyToken,
     (request: Request, response: Response, next: NextFunction) => authService.authorizeRoleClient(request, response, next),
     (request: Request, response: Response) => {getClientByIdController.handle(request, response)}
